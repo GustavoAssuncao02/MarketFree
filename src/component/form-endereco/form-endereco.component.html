@@ -1,0 +1,33 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <div class="titulo">
+        <h1>Preencha os dados abaixo para concluir seu cadastro</h1>
+    </div>
+    <form [formGroup]="formClient" (ngSubmit)="onSubmit()" class="formulario">
+        <div class="campo-form">
+            <label for="cep">CEP:</label>
+            <input type="text" formControlName="cep" placeholder="CEP" />
+        </div>
+        <div class="campo-form">
+            <label for="endereco">Endereço:</label>
+            <input type="text" formControlName="endereco" placeholder="Endereço" />
+        </div>
+        <div class="campo-form">
+            <label for="cidade">Cidade:</label>
+            <input type="text" formControlName="cidade" placeholder="Cidade" />
+        </div>
+        <div class="campo-form">
+            <label for="numero">Número:</label>
+            <input type="text" formControlName="numero" placeholder="Número" />
+        </div>
+        <div class="campo-form">
+            <label for="complemento">Complemento:</label>
+            <input type="text" formControlName="complemento" placeholder="Complemento" />
+        </div>
+        <div class="campo-form">
+            <label for="estado">Estado:</label>
+            <input type="text" formControlName="estado" placeholder="Estado" />
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>

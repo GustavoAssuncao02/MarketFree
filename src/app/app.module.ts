@@ -9,6 +9,7 @@ import { ProdutosComponent } from '../component/produtos/produtos.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from '../paginas/home/home.component';
+import { FormEnderecoComponent } from '../component/form-endereco/form-endereco.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HomeComponent } from '../paginas/home/home.component';
     CarrosselComponent,
     ProdutosComponent,
     FormComponent,
-    HomeComponent
+    HomeComponent,
+    FormEnderecoComponent,
   ],
   imports: [
     BrowserModule,

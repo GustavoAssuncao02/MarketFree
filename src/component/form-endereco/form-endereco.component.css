@@ -1,0 +1,49 @@
+.titulo {
+    text-align: center;
+    margin-bottom: 20px; /* Adicione margem inferior para separar o título dos campos */
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.formulario {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribui os campos em duas colunas */
+}
+
+.campo-form {
+    width: 48%; /* Define a largura dos campos para formar duas colunas */
+    margin-bottom: 15px;
+}
+
+.campo-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo-form input,
+.campo-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
