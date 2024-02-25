@@ -1,0 +1,5 @@
+#carouselExample .carousel-inner .carousel-item img { 
+    max-height: 400px; 
+    margin: auto;
+    object-fit: cover;
+}   

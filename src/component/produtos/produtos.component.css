@@ -1,0 +1,29 @@
+#titulo {
+    display: flex;
+    h1{
+        padding-top: 30px;
+        font-weight: bold;
+}
+    h6{
+        color: blue;
+        padding-top: 70px;
+    }
+}
+
+.card-body img {
+    max-width: 80%; 
+    height: auto
+
+}
+.col{
+    padding: 5px;
+}
+
+.row row-cols-1 row-cols-md-5 mb-3 text-center{
+    margin-right: 10px;
+}
+
+#contorno{
+    max-height: 100%;
+    font-size: 2vw;
+}

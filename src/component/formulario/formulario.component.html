@@ -1,0 +1,65 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+<div class="titulo"><h1>Preencha os dados abaixo para concluir seu cadastro</h1><div>
+<form [formGroup]="formClient" (ngSubmit)="onSubmit()" class="formulario">
+  <div class="campo-form">
+  <label for="nome">Nome:</label>
+  <input type="text" formControlName="nome" placeholder="nome" />
+</div>
+<div class="campo-form">
+  <label for="nome">Nome de usuário:</label>
+  <input
+    type="text"
+    formControlName="nomeDeUsuario"
+    placeholder="nome de usuário"
+  />
+</div>
+<div class="campo-form">
+  <label for="nome">CPF:</label>
+  <input type="text" formControlName="cpf" placeholder="CPF" />
+</div>
+<div class="campo-form">
+  <label for="nome">Data de Nascimento:</label>
+  <input
+    type="date"
+    formControlName="dataNascimento"
+    placeholder="Data de nascimento"
+  />
+</div>
+<div class="campo-form">
+  <label for="nome">Número de Telefone:</label>
+  <input
+    type="text"
+    formControlName="numeroTelefone"
+    placeholder="Número de Telefone"
+  />
+</div>
+<div class="campo-form">
+  <label for="nome">Gênero:</label>
+  <select formControlName="genero">
+    <option value="masculino">Masculino</option>
+    <option value="feminino">Feminino</option>
+    <option value="prefiroNaoInformar">Prefiro não informar</option>
+  </select>
+</div>
+<div class="campo-form">
+  <label for="nome">E-mail:</label>
+  <input type="email" formControlName="email" placeholder="E-mail"/>
+</div>
+<div class="campo-form">
+  <label for="nome">Senha:</label>
+  <input type="password" formControlName="senha" placeholder="Senha"/>
+</div>
+<div class="campo-form">
+  <label for="nome">Ocupação:</label>
+  <input type="text" formControlName="ocupacao" placeholder="ocupação" />
+</div>
+<div class="campo-form">
+  <label for="nome">Pessoa Politicamente Exposta::</label>
+  <select formControlName="politicamenteExposta">
+    <option value="Sim">Sim</option>
+    <option value="Não">Não</option>
+  </select>
+</div>
+  <button type="submit">Prosseguir</button>
+</form>
