@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from '../paginas/home/home.component';
 import { FormEnderecoComponent } from '../component/form-endereco/form-endereco.component';
+import { FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { FormEnderecoComponent } from '../component/form-endereco/form-endereco.
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    
     HttpClientModule
   ],
   

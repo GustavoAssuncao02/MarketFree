@@ -17,9 +17,11 @@ router.post("/cadas/add", (req, res) => {
     idEndereco: req.body.idEndereco,
   };
   console.log(detalhes);
-  let sql = "INSERT INTO marketfree.usuario SET ?";
 
-  connection.query(sql, detalhes, (error, response) => {
+
+  let sqlcliente = "INSERT INTO marketfree.usuario SET ?";
+
+  connection.query(sqlcliente, detalhes, (error, response) => {
     if (error) {
       console.error("Erro ao criar:", error);
       res.status(500).send({ status: false, message: "Erro ao criar" });
@@ -51,5 +53,33 @@ router.get("/cadas/leitura", (req, res) => {
     }
   });
 });
+
+router.post("/cadas/endereco", (req, res) => {
+  let endereco = {
+    cep: req.body.cep,
+    endereco: req.body.endereco,
+    cidade: req.body.cidade,
+    numero: req.body.numero,
+    complemento: req.body.complemento,
+    estado: req.body.estado,
+  }
+  let sqlEndereco = "INSERT INTO marketfree.endereco   SET ?";
+  connection.query(sqlEndereco, endereco, (error, response) => {
+    if (error) {
+      console.error("Erro ao criar:", error);
+      res.status(500).send({ status: false, message: "Erro ao criar" });
+    } else {
+      console.log("Deu certo");
+      res.setHeader("Content-Type", "application/json");
+      res
+        .status(200)
+        .send({ status: true, message: "Registro criado com sucesso" });
+    }
+  });
+});
+
+
+
+
 
 module.exports = router;
