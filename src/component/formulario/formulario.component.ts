@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClientService } from '../../services/apiservice.service';
+import { DadosCompartilhado } from '../form-endereco/dados';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -14,7 +16,7 @@ export class FormComponent implements OnInit {
   isResultLoaded = false;
   formClient!: FormGroup;
 
-  constructor(private fb: FormBuilder, private clientService: ClientService) {
+  constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.getUsuario();
   }
 
@@ -47,6 +49,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    console.log(this.dadosService)
   }
   
   register() {
@@ -70,7 +73,10 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.formClient.value);
+    this.dadosService.setDadosFormulario(this.formClient.value);
     this.register();
+    this.router.navigate(['/CadastroEndereco']);
+    console.log(this.dadosService)
   }
 }
 
