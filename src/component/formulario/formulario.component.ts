@@ -72,9 +72,9 @@ export class FormComponent implements OnInit {
   } 
 
   onSubmit() {
-    console.log(this.formClient.value);
+    //console.log(this.formClient.value);
     this.dadosService.setDadosFormulario(this.formClient.value);
-    this.register();
+    //this.register();
     this.router.navigate(['/CadastroEndereco']);
     console.log(this.dadosService)
   }

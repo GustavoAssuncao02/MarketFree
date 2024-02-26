@@ -71,9 +71,11 @@ export class FormEnderecoComponent {
     console.log('Dados enviados para o servidor:', this.formEndereco.value);
 
     if (this.formEndereco.valid) {
-      const bodyData = this.formEndereco.value;
-
-      this.clientService.addEndereco(bodyData).subscribe({
+      const bodyDataEndereco = this.formEndereco.value; // Dados do formulário de endereço
+      const bodyDataCliente = this.dadosService.getDadosFormulario(); // Dados do formulário de cliente
+      console.log("dados do cliente:")
+      console.log(bodyDataCliente)
+      this.clientService.addUsuario(bodyDataEndereco, bodyDataCliente).subscribe({
         next: (resultData: any) => {
           console.log(resultData);
           alert('Sucesso ao registrar');
@@ -87,10 +89,7 @@ export class FormEnderecoComponent {
   }
 
   onSubmitEndereco() {
-    console.log(this.formEndereco.value);
     this.registerEndereco();
-    console.log("lado endereco")
-    console.log(this.dadosService)
   }
 }
 
