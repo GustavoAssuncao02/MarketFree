@@ -16,4 +16,11 @@
     font-weight: bold;
   }
   
+.account{
+    color: white;
+    text-decoration: none;
+}
 
+.menuSuperior{
+    padding-right: 90px;
+}

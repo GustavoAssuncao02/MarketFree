@@ -12,6 +12,7 @@ import { HomeComponent } from '../paginas/home/home.component';
 import { FormEnderecoComponent } from '../component/form-endereco/form-endereco.component';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { LoginComponent } from '../component/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,16 +23,16 @@ import { FormGroup } from '@angular/forms';
     FormComponent,
     HomeComponent,
     FormEnderecoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    
     HttpClientModule
   ],
   
-  providers: [],
+  providers: [], 
   bootstrap: [AppComponent]
   
 })

@@ -1,0 +1,18 @@
+<app-nav-bar></app-nav-bar>
+
+<h2 class="Title">Preencha os dados abaixo para concluir seu login</h2>
+<div class="form-container">
+    <form action="#" method="post" [formGroup]="formLogin" (ngSubmit)="onSubmitLogin()">
+        <div class="form-group">
+            <label for="emailOrCPF">E-mail ou CPF:</label>
+            <input type="text" id="emailOrCPF" name="emailOrCPF" required>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Entrar">
+        </div>
+    </form>
+</div>

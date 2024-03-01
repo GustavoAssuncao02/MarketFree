@@ -15,12 +15,27 @@
       <button *ngIf="mostrar" class="btn btn-outline-success" type="submit">Search</button>
     </form>
     <div *ngIf="cadastro" class="center-text">
-      <h1 >Cadastre uma conta</h1>
+      <h1 class="menuSuperior">Cadastre uma conta</h1>
+      <h1 class="menuSuperior">Realizar Login</h1>
+    </div>
+    <div *ngIf="login" class="center-text">
+      <h1 class="menuSuperior">Realizar Login</h1>
     </div>
       <div *ngIf="mostrar"   class="d-flex r-0">
         <a href="#" class="ms-3 text-white" routerLink="cadastre">Criar sua Conta</a>
         <a href="#" class="ms-3 text-white">Entrar</a>
       </div>
-    
+      <a class="nav-link dropdown-toggle account" *ngIf="logado" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Minha conta
+        <img src="../../assets/Group.svg" alt="">
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Meu perfil</a></li>
+        <li><a class="dropdown-item" href="#">Meus Pedidos</a></li>
+        <li><a class="dropdown-item" href="#">Favoritos</a></li>
+        <li><a class="dropdown-item" href="#">Sair</a></li>
+        
+       
+      </ul>
   </div>
 </div>
