@@ -16,6 +16,10 @@ export class DadosCompartilhado {
 
   setDadosLogin(dados: any) {
     this.dadosLogin = dados;
+  }
+  
+  getDadosLogin() {
+    return this.dadosLogin;
   } 
 
   getDadosFormulario() {

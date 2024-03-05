@@ -17,14 +17,29 @@ export class ClientService {
   }
   addEndereco(endereco: any): Observable<any> {
     const headers = { 'Content-Type': 'application/json' };
-    return this.http.post<any>('http://localhost:8081/cadas/endereco', endereco, {
-      headers,
-    });}
+    return this.http.post<any>(
+      'http://localhost:8081/cadas/endereco',
+      endereco,
+      {
+        headers,
+      }
+    );
+  }
 
-    addUsuario(endereco: any, cliente : any): Observable<any> {
-      const headers = { 'Content-Type': 'application/json' };
-      const data = { endereco: endereco, cliente: cliente };
-      return this.http.post<any>('http://localhost:8081/cadas/dado', data, { headers: headers });}
+  addUsuario(endereco: any, cliente: any): Observable<any> {
+    const headers = { 'Content-Type': 'application/json' };
+    const data = { endereco: endereco, cliente: cliente };
+    return this.http.post<any>('http://localhost:8081/cadas/dado', data, {
+      headers: headers,
+    });
+  }
+
+  Login(dados: any): Observable<any> {
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.post<any>('http://localhost:8081/login', dados, {
+      headers,
+    });
+  }
 
   getAllClients(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:8081/cadas/leitura');

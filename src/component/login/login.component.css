@@ -2,7 +2,7 @@
     width: 300px;
     margin: 0 auto;
     padding: 20px;
-    text-align: center; /* Centraliza o conteúdo */
+    text-align: center;
 }
 
 .Title{
@@ -22,7 +22,7 @@
 .form-group label {
     display: block;
     font-weight: bold;
-    text-align: left; /* Alinha o texto à esquerda */
+    text-align: left; 
 }
 
 .form-group input {
@@ -30,7 +30,7 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    box-sizing: border-box; /* Faz com que o padding não aumente a largura do input */
+    box-sizing: border-box; 
 }
 
 .form-group input[type="submit"] {
@@ -39,7 +39,7 @@
     color: #fff;
     border: none;
     cursor: pointer;
-    padding: 10px 20px; /* Adiciona um espaço de preenchimento ao redor do texto */
+    padding: 10px 20px;
     font-size: 16px;
     border-radius: 3px;
 }

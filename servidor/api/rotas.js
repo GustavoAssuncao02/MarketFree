@@ -1,3 +1,4 @@
+
 const { Router } = require("express");
 const router = Router(); 
 const connection = require("../database/databaseConnection");
@@ -93,7 +94,6 @@ router.post("/cadas/endereco", (req, res) => {
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/dado", (req, res) => {
-  console.log("chegou ao teste")
 
   let enderecoDetalhes = {
     cep: req.body.endereco.cep,
@@ -131,11 +131,7 @@ router.post("/cadas/dado", (req, res) => {
       res.status(500).send({ status: false, message: "Erro ao criar endereço" });
     } else {
       console.log("Endereço criado com sucesso");
-  
-      // Atualização do idEndereco do cliente após a inserção bem-sucedida do endereço
       clienteDetalhes.idEndereco = response.insertId;
-  
-      // Inserir dados do cliente apenas se a inserção do endereço for bem-sucedida
       connection.query(sqlCliente, clienteDetalhes, (error, response) => {
         if (error) {
           console.error("Erro ao criar cliente:", error);
@@ -152,7 +148,24 @@ router.post("/cadas/dado", (req, res) => {
   
 });
 
+//------------------------------------------------------------------------------------------------------------------------------------------//
 
+router.post("/login", (req, res) => {
+  const { emailOuCPF, senha } = req.body;
+  let sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
+  connection.query(sql, [emailOuCPF, senha], (error, results) => {
+    if (error) {
+      console.error("Erro ao executar a consulta:", error);
+      return res.status(500).json({ success: false, message: "Erro ao fazer login" });
+    }
+    if (results.length > 0) {
 
+      return res.status(200).json({ success: true, message: "Login bem-sucedido" });
+    } else {
+      return res.status(401).json({ success: false, message: "Credenciais inválidas. Verifique seu e-mail ou CPF e senha e tente novamente." });
+    
+    }
+  });
+});
 
 module.exports = router;
