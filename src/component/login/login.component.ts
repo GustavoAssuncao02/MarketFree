@@ -31,7 +31,7 @@ export class LoginComponent {
     this.createForm();
   }
 
-  onSubmitLogin() {
+  verificarDados(): void{
     const dadosFormulario = this.formLogin.value;
     this.dadosCompartilhado.setDadosLogin(dadosFormulario);
     this.clientService.Login(dadosFormulario).subscribe(
@@ -49,5 +49,11 @@ export class LoginComponent {
       }
 
     );
+  }
+
+
+
+  onSubmitLogin() {
+    this.verificarDados();
   }
 }
