@@ -45,6 +45,7 @@ export class LoginComponent {
         }
       },
       (error) => {
+        alert('Credenciais inválidas');
         console.error('Erro ao fazer login:', error);
       }
 
