@@ -14,7 +14,8 @@ import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { LoginComponent } from '../component/login/login.component';
 import { PerfilComponent } from '../component/perfil/perfil.component';
-
+import { InfoUserComponent } from '../component/info-usuario/info-usuario.component';
+import { DadosUsuarioComponent } from '../component/dados-usuario/dados-usuario.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,8 @@ import { PerfilComponent } from '../component/perfil/perfil.component';
     FormEnderecoComponent,
     LoginComponent,
     PerfilComponent,
+    InfoUserComponent,
+    DadosUsuarioComponent,
   ],
   imports: [
     BrowserModule,
