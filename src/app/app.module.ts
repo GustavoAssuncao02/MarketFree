@@ -13,6 +13,7 @@ import { FormEnderecoComponent } from '../component/form-endereco/form-endereco.
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { LoginComponent } from '../component/login/login.component';
+import { PerfilComponent } from '../component/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from '../component/login/login.component';
     FormComponent,
     HomeComponent,
     FormEnderecoComponent,
-    LoginComponent
+    LoginComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,

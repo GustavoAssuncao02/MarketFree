@@ -37,3 +37,40 @@
       </ul>
   </div>
 </div>
+
+
+
+<!--------------------------------------------------------------------------------------------------------------------------------------->
+<div class="container-fluid bg-primary">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div id="logo">
+      <img src="../../assets/Imagens/Icon.ico" alt="Ícone" class="logo-img" />
+    </div>
+    <form *ngIf="mostrar" class="d-flex align-items-center" role="search">
+      <input class="form-control form-control-lg me-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px;" />
+      <button *ngIf="mostrar" class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <div *ngIf="cadastro" class="center-text">
+      <h1 class="menuSuperior">Cadastre uma conta</h1>
+    </div>
+    <div *ngIf="login" class="center-text">
+      <h1 class="menuSuperior">Realizar Login</h1>
+    </div>
+    <div *ngIf="mostrar" class="d-flex">
+      <a href="#" class="ms-3 text-white" routerLink="cadastre">Criar sua Conta</a>
+      <a href="#" class="ms-3 text-white" routerLink="Login">Entrar</a>
+    </div>
+    <div class="dropdown">
+      <a class="nav-link dropdown-toggle account text-white" *ngIf="logado" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Minha conta
+        <img src="../../assets/Group.svg" alt="">
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Meu perfil</a></li>
+        <li><a class="dropdown-item" href="#">Meus Pedidos</a></li>
+        <li><a class="dropdown-item" href="#">Favoritos</a></li>
+        <li><a class="dropdown-item" href="#">Sair</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
