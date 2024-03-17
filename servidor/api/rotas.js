@@ -162,6 +162,7 @@ router.post("/login", (req, res) => {
     }
     if (results.length > 0) {
       const token = gerarToken(results[0].idUsuario);
+      console.log(token);
       return res.status(200).json({ success: true, message: "Login bem-sucedido", token: token });
     } else {
       return res.status(401).json({ success: false, message: "Credenciais inválidas. Verifique seu e-mail ou CPF e senha e tente novamente." });

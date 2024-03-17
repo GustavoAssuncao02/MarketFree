@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { DadosCompartilhado } from '../form-endereco/dados';
 import { ClientService } from '../../services/apiservice.service';
 import { Router } from '@angular/router';
+import { response } from 'express';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent {
     this.createForm();
   }
 
-  verificarDados(): void{
+  verificarDados(): void {
     const dadosFormulario = this.formLogin.value;
     this.dadosCompartilhado.setDadosLogin(dadosFormulario);
     this.clientService.Login(dadosFormulario).subscribe(
@@ -39,6 +40,8 @@ export class LoginComponent {
         console.log('Resposta do servidor:', response);
         if (response.success) {
           this.dadosCompartilhado.setDadosLogin(dadosFormulario);
+          const token = response.token;
+          localStorage.setItem('jwt_token', token);
           this.router.navigate(['/']);
         } else {
           console.error('Erro ao fazer login:', response.message);
@@ -48,11 +51,8 @@ export class LoginComponent {
         alert('Credenciais inválidas');
         console.error('Erro ao fazer login:', error);
       }
-
     );
   }
-
-
 
   onSubmitLogin() {
     this.verificarDados();
