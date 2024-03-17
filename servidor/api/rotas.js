@@ -3,6 +3,8 @@ const { Router } = require("express");
 const router = Router(); 
 const connection = require("../database/databaseConnection");
 const jtw = require("jsonwebtoken");
+require("dotenv-safe").config();
+const {gerarToken} = require('./jwt.js');
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/add", (req, res) => {
@@ -159,11 +161,10 @@ router.post("/login", (req, res) => {
       return res.status(500).json({ success: false, message: "Erro ao fazer login" });
     }
     if (results.length > 0) {
-
-      return res.status(200).json({ success: true, message: "Login bem-sucedido" });
+      const token = gerarToken(results[0].idUsuario);
+      return res.status(200).json({ success: true, message: "Login bem-sucedido", token: token });
     } else {
       return res.status(401).json({ success: false, message: "Credenciais inválidas. Verifique seu e-mail ou CPF e senha e tente novamente." });
-    
     }
   });
 });

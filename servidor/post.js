@@ -3,7 +3,8 @@ const server = express();
 const port = 8081;
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
+require("dotenv-safe").config();
+const jwt = require('jsonwebtoken');
 
 const routerForm = require("./api/rotas.js");
 
