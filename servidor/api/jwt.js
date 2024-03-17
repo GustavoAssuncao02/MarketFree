@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const gerarToken = (idUsuario) => {
-  const secreto = process.env.JWT_SECRET;
+  const secreto = process.env.SECRET;
 
   if (!secreto) {
     throw new Error('A chave secreta não está definida.');
