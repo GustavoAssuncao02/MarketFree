@@ -21,7 +21,7 @@ export class FormEnderecoComponent {
   }
 
   getUsuario() {
-    this.clientService.getAllClients().subscribe(
+    this.clientService.getUsuarios().subscribe(
       (resultData: any) => {
         this.isResultLoaded = true;
         console.log(resultData.data);

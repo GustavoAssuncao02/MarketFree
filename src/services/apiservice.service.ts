@@ -39,9 +39,9 @@ export class ClientService {
     return this.http.post<any>('http://localhost:8081/login', dados, {
       headers,
     });
-  }
+  } 
 
-  getAllClients(): Observable<any[]> {
+  getUsuarios(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:8081/cadas/leitura');
   }
 }
