@@ -23,17 +23,16 @@ export class NavBarComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentPage = event.url;
-        this.mostrar = !(
-          this.currentPage === '/cadastre' ||
-          this.currentPage === '/CadastroEndereco' ||
-          this.currentPage === '/Login'
+        this.mostrar = !(this.currentPage === '/cadastre' || this.currentPage === '/CadastroEndereco' || this.currentPage === '/Login'
         );
-        this.cadastro =
-        this.currentPage === '/cadastre' ||
-        this.currentPage === '/CadastroEndereco';
-        this.login = this.currentPage === '/Login';
-        this.logado = this.verificarTokenJWT();
+        this.cadastro =this.currentPage === '/cadastre' || this.currentPage === '/CadastroEndereco'; this.login = this.currentPage === '/Login'; this.logado = this.verificarTokenJWT();
+        this.login = !(this.currentPage === '/Login'
+        );
       }
     });
+  }
+  sair(){
+    localStorage.removeItem('jwt_token');
+    window.location.reload();
   }
 }

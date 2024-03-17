@@ -16,10 +16,10 @@
     <div *ngIf="cadastro" class="center-text">
       <h1 class="menuSuperior">Cadastre uma conta</h1>
     </div>
-    <div *ngIf="!logado" class="center-text">
+    <div *ngIf="!login" class="center-text">
       <h1 class="menuSuperior">Realizar Login</h1>
     </div>
-      <div *ngIf="!logado"   class="d-flex r-0">
+      <div *ngIf="!logado && mostrar" class="d-flex r-0">
         <a class="ms-3 text-white" routerLink="cadastre">Criar sua Conta</a>
         <a class="ms-3 text-white" routerLink="Login">Entrar</a>
       </div>
@@ -28,10 +28,10 @@
         <img src="../../assets/Group.svg" alt="">
       </a>      
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Meu perfil</a></li>
-        <li><a class="dropdown-item" href="#">Meus Pedidos</a></li>
-        <li><a class="dropdown-item" href="#">Favoritos</a></li>
-        <li><a class="dropdown-item" href="#">Sair</a></li>
+        <li><a class="dropdown-item" routerLink="perfil">Meu perfil</a></li>
+        <li><a class="dropdown-item">Meus Pedidos</a></li>
+        <li><a class="dropdown-item">Favoritos</a></li>
+        <li><a class="dropdown-item" (click)="sair()">Sair</a></li>
         
        
       </ul>
