@@ -7,35 +7,33 @@
       class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light"
       style="margin-top: 50px"
     >
-      <div class="col p-4 d-flex flex-column position-static">
-        <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-          <div class="col-auto d-none d-lg-block">
-            <img src="../../assets/Imagens/perfil.png" alt="" />
-          </div>
-          <div class="ml-3 d-flex flex-column align-items-center">
-            <ng-container *ngIf="cliente">
-              <a href="" class="mb-1">Nome: {{ cliente.nome }}</a>
-              <a href="">Nome de usuário: {{ cliente.nomeDeUsuario }}</a>
-            </ng-container>
-          </div>
-          
-        </a>
-      </div>
+    <div class="col p-4 d-flex flex-column position-static">
+      <a class="icon-link gap-1 icon-link-hover stretched-link" style="pointer-events: none; text-decoration: none !important; color: black;">
+        <div class="col-auto d-none d-lg-block">
+          <img src="../../assets/Imagens/perfil.png" alt="" />
+        </div>
+        
+        <div class="ml-3 d-flex flex-column">
+            <h3 class="mb-1" >{{ cliente.nome }}</h3> 
+            <span >{{ cliente.email }}</span>
+        </div>
+      </a>
+    </div>
+    
+    
     </div>
     <div
       class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light"
       style="margin-top: 10px"
     >
       <div class="col p-4 d-flex flex-column position-static">
-        <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+        <a class="icon-link gap-1 icon-link-hover stretched-link" style="pointer-events: none; text-decoration: none !important; color: black;">
           <div class="col-auto d-none d-lg-block">
             <img src="../../assets/Imagens/info.png" alt="" />
           </div>
-          <div class="ml-3 d-flex flex-column align-items-center">
-            <ng-container *ngIf="cliente">
-              <a href="" class="mb-1">Nome: {{ cliente.nome }}</a>
-              <a href="">Nome de usuário: {{ cliente.nomeDeUsuario }}</a>
-            </ng-container>
+          <div class="ml-3 d-flex flex-column">
+              <h3 class="mb-1" >Minhas Informações</h3> 
+              <span >Informações do usuário</span>
           </div>
         </a>
       </div>
@@ -45,13 +43,14 @@
       style="margin-top: 10px"
     >
       <div class="col p-4 d-flex flex-column position-static">
-        <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+        <a class="icon-link gap-1 icon-link-hover stretched-link" style="pointer-events: none; text-decoration: none !important; color: black;">
           <div class="col-auto d-none d-lg-block">
             <img src="../../assets/Imagens/security.png" alt="" />
           </div>
-          <div class="ml-3 d-flex flex-column align-items-center">
-            <a href="" class="mb-1">Nome de usuário</a>
-            <a href="">Nome de usuário</a>
+          <div class="ml-3 d-flex flex-column">
+            
+              <h3 class="mb-1" >Dados da Conta</h3> 
+              <span >Dados Cadastrais da conta</span>
           </div>
         </a>
       </div>
