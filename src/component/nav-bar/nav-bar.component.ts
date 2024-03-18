@@ -33,6 +33,6 @@ export class NavBarComponent {
   }
   sair(){
     localStorage.removeItem('jwt_token');
-    window.location.reload();
+    window.location.href = 'http://localhost:4200';
   }
 }

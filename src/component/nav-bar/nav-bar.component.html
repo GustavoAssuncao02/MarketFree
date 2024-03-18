@@ -1,7 +1,9 @@
 <div class="container-fluid bg-primary">
   <div class="container d-flex justify-content-between align-items-center">
     <div id="logo"> 
-      <img src="../../assets/Imagens/Icon.ico" alt="Ícone" />⠀
+      <a routerLink="/">
+        <img src="../../assets/Imagens/Icon.ico" alt="Ícone" style="cursor: pointer;" />
+      </a>
     </div>
     <form *ngIf="mostrar" class="d-flex align-items-center" role="search">
       <input
@@ -31,7 +33,7 @@
         <li><a class="dropdown-item" routerLink="perfil">Meu perfil</a></li>
         <li><a class="dropdown-item">Meus Pedidos</a></li>
         <li><a class="dropdown-item">Favoritos</a></li>
-        <li><a class="dropdown-item" (click)="sair()">Sair</a></li>
+        <li><a class="dropdown-item" routerLink="Login" (click)="sair()" >Sair</a></li>
         
        
       </ul>
