@@ -4,25 +4,26 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DadosCompartilhado {
-  dadosFormulario: any;
-  dadosLogin : any;
+  private readonly dadosFormularioKey = 'dadosFormulario';
+  private readonly dadosLoginKey = 'dadosLogin';
 
   constructor() { }
 
   setDadosFormulario(dados: any) {
-    this.dadosFormulario = dados;
+    localStorage.setItem(this.dadosFormularioKey, JSON.stringify(dados));
   }
-
 
   setDadosLogin(dados: any) {
-    this.dadosLogin = dados;
-  }
+    localStorage.setItem(this.dadosLoginKey, JSON.stringify(dados));
+  } 
   
   getDadosLogin() {
-    return this.dadosLogin;
+    const dados = localStorage.getItem(this.dadosLoginKey);
+    return dados ? JSON.parse(dados) : null;
   } 
 
   getDadosFormulario() {
-    return this.dadosFormulario;
+    const dados = localStorage.getItem(this.dadosFormularioKey);
+    return dados ? JSON.parse(dados) : null;
   }
 }

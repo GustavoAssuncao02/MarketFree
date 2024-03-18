@@ -62,6 +62,28 @@ router.get("/cadas/leitura", (req, res) => {
     }
   });
 });
+//------------------------------------------------------------------------------------------------------------------------------------------//
+router.post("/cadas/leituracliente", (req, res) => {
+  const email = req.body.email;
+  const sql = "SELECT * FROM usuario WHERE email = ?";
+  
+  connection.query(sql, [email], (error, result) => {
+    if (error) {
+      res.status(500).send({ status: false, message: "Erro ao obter dados do usuário" });
+    } else {
+      if (result.length === 0) {
+        res.status(404).send({ status: false, message: "Usuário não encontrado" });
+      } else {
+        res.status(200).send({
+          status: true,
+          data: result[0],
+          message: "Dados do usuário obtidos com sucesso",
+        });
+      }
+    }
+  });
+});
+
 
 
 

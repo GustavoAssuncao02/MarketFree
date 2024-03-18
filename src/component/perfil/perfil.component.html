@@ -1,4 +1,4 @@
-
+ 
 <app-nav-bar></app-nav-bar>
 
 <div class="row mb-2 bg-secondary justify-content-center">
@@ -13,9 +13,12 @@
             <img src="../../assets/Imagens/perfil.png" alt="" />
           </div>
           <div class="ml-3 d-flex flex-column align-items-center">
-            <a href="" class="mb-1">Nome de usuário</a>
-            <a href="">Nome de usuário</a>
+            <ng-container *ngIf="cliente">
+              <a href="" class="mb-1">Nome: {{ cliente.nome }}</a>
+              <a href="">Nome de usuário: {{ cliente.nomeDeUsuario }}</a>
+            </ng-container>
           </div>
+          
         </a>
       </div>
     </div>
@@ -29,8 +32,10 @@
             <img src="../../assets/Imagens/info.png" alt="" />
           </div>
           <div class="ml-3 d-flex flex-column align-items-center">
-            <a href="" class="mb-1">Nome de usuário</a>
-            <a href="">Nome de usuário</a>
+            <ng-container *ngIf="cliente">
+              <a href="" class="mb-1">Nome: {{ cliente.nome }}</a>
+              <a href="">Nome de usuário: {{ cliente.nomeDeUsuario }}</a>
+            </ng-container>
           </div>
         </a>
       </div>

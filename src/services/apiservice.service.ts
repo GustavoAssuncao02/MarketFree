@@ -1,6 +1,6 @@
 // client.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -38,10 +38,16 @@ export class ClientService {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.post<any>('http://localhost:8081/login', dados, {
       headers,
-    });
+    }); 
   } 
 
   getUsuarios(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:8081/cadas/leitura');
+  }
+  
+  getUsuariosEspecifico(email: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const data = { email: email };
+    return this.http.post<any>('http://localhost:8081/cadas/leituracliente', data, { headers: headers });
   }
 }

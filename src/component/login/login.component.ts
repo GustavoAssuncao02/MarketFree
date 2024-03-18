@@ -18,7 +18,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private dadosCompartilhado: DadosCompartilhado,
     private clientService: ClientService,
-    private router: Router
+    private router: Router,
   ) {}
 
   createForm() {
