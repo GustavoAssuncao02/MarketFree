@@ -50,4 +50,9 @@ export class ClientService {
     const data = { email: email };
     return this.http.post<any>('http://localhost:8081/cadas/leituracliente', data, { headers: headers });
   }
+  getEndereco(id: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const data = { id: id };
+    return this.http.post<any>('http://localhost:8081/cadas/leituraclienteEndereco', data, { headers: headers });
+  }
 }

@@ -11,7 +11,7 @@ import { DadosCompartilhado } from '../form-endereco/dados';
 })
 export class PerfilComponent implements OnInit {
   cliente: any;
-
+  endereco: any
   constructor(
     private clientService: ClientService,
     private route: ActivatedRoute,
@@ -26,10 +26,19 @@ export class PerfilComponent implements OnInit {
       (response) => {
         this.cliente = response.data;
         console.log(this.cliente);
+        this.clientService.getEndereco(this.cliente.idEndereco).subscribe(
+          (response) => {
+            this.endereco = response.data;
+            console.log(this.endereco);          
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       },
       (error) => {
         console.error(error);
       }
     );
   }
-}
+} 

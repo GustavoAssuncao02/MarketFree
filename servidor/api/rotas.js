@@ -84,6 +84,28 @@ router.post("/cadas/leituracliente", (req, res) => {
   });
 });
 
+//-----------------------------------------------------------------------------------------------------------------------------------//
+
+router.post("/cadas/leituraclienteEndereco", (req, res) => {
+  const id = req.body.id; // este é o id do endereço
+  const sql = "SELECT * FROM endereco WHERE id = ?";
+  
+  connection.query(sql, [id], (error, result) => {
+    if (error) {
+      res.status(500).send({ status: false, message: "Erro ao obter dados do endereço" });
+    } else {
+      if (result.length === 0) {
+        res.status(404).send({ status: false, message: "Endereço não encontrado" });
+      } else {
+        res.status(200).send({
+          status: true,
+          data: result[0], // Aqui, result[0] contém os dados do endereço
+          message: "Dados do endereço obtidos com sucesso",
+        });
+      }
+    }
+  });
+});
 
 
 
