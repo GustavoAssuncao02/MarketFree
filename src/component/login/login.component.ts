@@ -37,6 +37,7 @@ export class LoginComponent {
     this.dadosCompartilhado.setDadosLogin(dadosFormulario);
     this.clientService.Login(dadosFormulario).subscribe(
       (response) => {
+        console.log("aqui")
         console.log('Resposta do servidor:', response);
         if (response.success) {
           this.dadosCompartilhado.setDadosLogin(dadosFormulario);

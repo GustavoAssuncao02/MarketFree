@@ -25,7 +25,7 @@ export class DadosSegurancaComponent {
   salvarEdicaoCliente(campo: string, event: any) {
     const novoValorCliente = event.target.innerText; // Obtém o novo valor do campo editável
     this.cliente[campo] = novoValorCliente; // Atualiza o valor do cliente
-    this.clientService.atualizarClienteSegurança(this.cliente).subscribe( 
+    this.clientService.atualizarClienteSeguranca(this.cliente).subscribe( 
        (response) => {
         console.log('Dados atualizados com sucesso!');
       },
