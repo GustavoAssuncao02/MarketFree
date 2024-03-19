@@ -48,11 +48,21 @@ export class InfoUserComponent {
 
   exibirConfirmacao() {
     if (confirm("Tem certeza que deseja apagar a conta?")) {
-        alert("Conta excluída com sucesso!");
-        window.location.href = 'http://localhost:4200';
-        
+      console.log(this.cliente.id)
+      this.clientService.apagarConta(this.cliente.id).subscribe(
+        (response) => {
+          alert("Conta excluída com sucesso!");
+          localStorage.removeItem('jwt_token');
+          window.location.href = 'http://localhost:4200';
+
+        },
+        (error) => {
+          console.error('Erro ao apagar conta:', error);
+        }
+      );
     }
-}
+  }
+  
 
   ngOnInit(): void {
     console.log(this.dados.getDadosLogin());

@@ -301,4 +301,58 @@ router.post("/login", (req, res) => {
   });
 });
 
+//------------------------------------------------------------------------------------------------------------------------------------------//
+router.post("/cadas/apagarConta", (req, res) => {
+  const { idUsuario } = req.body;
+
+  // Consulta SQL para obter o ID do endereço associado ao usuário
+  let sqlSelectEnderecoId = "SELECT idEndereco FROM usuario WHERE id = ?";
+  connection.query(sqlSelectEnderecoId, [idUsuario], (errorSelect, resultsSelect) => {
+    if (errorSelect) {
+      console.error("Erro ao obter o ID do endereço:", errorSelect);
+      return res.status(500).json({ success: false, message: "Erro ao apagar conta" });
+    }
+    if (resultsSelect.length === 0) {
+      return res.status(404).json({ success: false, message: "Usuário não encontrado" });
+    }
+    const idEndereco = resultsSelect[0].idEndereco;
+
+    // Consulta SQL para atualizar os registros na tabela usuario que estão vinculados a esse endereço
+    let sqlUpdateUsuario = "UPDATE usuario SET idEndereco = NULL WHERE idEndereco = ?";
+    connection.query(sqlUpdateUsuario, [idEndereco], (errorUpdate, resultsUpdate) => {
+      if (errorUpdate) {
+        console.error("Erro ao atualizar registros na tabela usuario:", errorUpdate);
+        return res.status(500).json({ success: false, message: "Erro ao apagar conta" });
+      }
+
+      // Consulta SQL para excluir o endereço associado ao usuário
+      let sqlDeleteEndereco = "DELETE FROM endereco WHERE id = ?";
+      connection.query(sqlDeleteEndereco, [idEndereco], (errorDelete, resultsDelete) => {
+        if (errorDelete) {
+          console.error("Erro ao excluir o endereço:", errorDelete);
+          return res.status(500).json({ success: false, message: "Erro ao apagar conta" });
+        }
+        
+        // Consulta SQL para excluir o usuário
+        let sqlDeleteUsuario = "DELETE FROM usuario WHERE id = ?";
+        connection.query(sqlDeleteUsuario, [idUsuario], (errorDeleteUsuario, resultsDeleteUsuario) => {
+          if (errorDeleteUsuario) {
+            console.error("Erro ao excluir o usuário:", errorDeleteUsuario);
+            return res.status(500).json({ success: false, message: "Erro ao apagar conta" });
+          }
+          if (resultsDeleteUsuario.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: "Usuário não encontrado" });
+          }
+          
+          // Se chegarmos até aqui, o usuário e o endereço foram excluídos com sucesso
+          return res.status(200).json({ success: true, message: "Conta excluída com sucesso" });
+        });
+      });
+    });
+  });
+});
+
+
+
+
 module.exports = router;
