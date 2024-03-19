@@ -60,4 +60,9 @@ export class ClientService {
     const data = { id: id };
     return this.http.post<any>('http://localhost:8081/cadas/alterarUsuario', data, { headers: headers });
   }
+  atualizarEndereco(id: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const data = { id: id };
+    return this.http.post<any>('http://localhost:8081/cadas/alterarEndereco', data, { headers: headers });
+  }
 }

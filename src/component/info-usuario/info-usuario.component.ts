@@ -20,10 +20,10 @@ export class InfoUserComponent {
     private dados: DadosCompartilhado
   ) {}
 
-  salvarEdicao(campo: string, event: any) {
+  salvarEdicaoCliente(campo: string, event: any) {
     const novoValor = event.target.innerText; // Obtém o novo valor do campo editável
     this.cliente[campo] = novoValor; // Atualiza o valor do cliente
-    this.clientService.atualizarCliente(this.cliente).subscribe(
+    this.clientService.atualizarCliente(this.cliente).subscribe( 
        (response) => {
         console.log('Dados atualizados com sucesso!');
       },
@@ -31,6 +31,19 @@ export class InfoUserComponent {
         console.error('Erro ao atualizar dados:', error);
       }
    );
+  }
+
+  salvarEdicaoEndereco(campo: string, event: any) {
+    const novoValor = event.target.innerText; // Obtém o novo valor do campo editável
+    this.endereco[campo] = novoValor; // Atualiza o valor do endereço
+    this.clientService.atualizarEndereco(this.endereco).subscribe( 
+       (response) => {
+        console.log('Dados do endereço atualizados com sucesso!');
+      },
+       (error) => {
+        console.error('Erro ao atualizar dados do endereço:', error);
+      }
+    );
   }
 
   ngOnInit(): void {

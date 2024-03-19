@@ -109,58 +109,44 @@ router.post("/cadas/leituraclienteEndereco", (req, res) => {
 //-----------------------------------------------------------------------------------------------------------//
 router.post("/cadas/alterarUsuario", (req, res) => {
   const cliente = req.body.id;
-  
-  // Primeiro, obtenha o idEndereco associado ao idUsuario
-  const sqlIdEndereco = "SELECT idEndereco FROM usuario WHERE id = ?";
-  
-  connection.query(sqlIdEndereco, [cliente.id], (errorIdEndereco, resultIdEndereco) => {
-    if (errorIdEndereco) {
-      res.status(500).send({ status: false, message: "Erro ao obter ID do endereço associado ao usuário" });
+
+  const sqlUsuario = `UPDATE usuario 
+                      SET nome = ?, cpf = ?, ocupacao = ?, politicamenteExposta = ? 
+                      WHERE id = ?`;
+
+  connection.query(sqlUsuario, [cliente.nome, cliente.cpf, cliente.ocupacao, cliente.politicamenteExposta, cliente.id], (errorUsuario, resultUsuario) => {
+    if (errorUsuario) {
+      res.status(500).send({ status: false, message: "Erro ao atualizar dados do usuário" });
     } else {
-      if (resultIdEndereco.length === 0) {
+      if (resultUsuario.affectedRows === 0) {
         res.status(404).send({ status: false, message: "Usuário não encontrado" });
-      } else {
-        const idEndereco = resultIdEndereco[0].idEndereco;
-    
-        
-        // Em seguida, execute a consulta SQL para atualizar os campos do usuário
-        const sqlUsuario = `UPDATE usuario 
-                            SET nome = ?, cpf = ?, ocupacao = ?, politicamenteExposta = ? 
-                            WHERE id = ?`;
-        
-        connection.query(sqlUsuario, [cliente.nome, cliente.cpf, cliente.ocupacao, cliente.politicamenteExposta, cliente.id], (errorUsuario, resultUsuario) => {
-          if (errorUsuario) {
-            res.status(500).send({ status: false, message: "Erro ao atualizar dados do usuário" });
-          } else {
-            if (resultUsuario.affectedRows === 0) {
-              res.status(404).send({ status: false, message: "Usuário não encontrado" });
-            } else {
-              // Agora, execute a consulta SQL para atualizar os campos do endereço
-              const sqlEndereco = `UPDATE endereco 
-                                   SET endereco = ?, cep = ?, cidade = ?, numero = ? 
-                                   WHERE id = ?`;
-              
-              connection.query(sqlEndereco, [cliente.endereco, cliente.cep, cliente.cidade, cliente.numero, idEndereco], (errorEndereco, resultEndereco) => {
-                if (errorEndereco) {
-                  res.status(500).send({ status: false, message: "Erro ao atualizar dados do endereço" });
-                } else {
-                  if (resultEndereco.affectedRows === 0) {
-                    res.status(404).send({ status: false, message: "Endereço não encontrado" });
-                  } else {
-                    res.status(200).send({
-                      status: true,
-                      message: "Dados do usuário e do endereço atualizados com sucesso",
-                    });
-                  }
-                }
-              });
-            }
-          }
-        });
       }
     }
   });
 });
+
+//---------------------------------------------------------------------------------------------------------------------------------//
+router.post("/cadas/alterarEndereco", (req, res) => {
+  const endereco = req.body.id;
+
+  const sqlEndereco = `UPDATE endereco 
+  SET endereco = ?, cep = ?, cidade = ?, numero = ? 
+  WHERE id = ?`
+  connection.query(sqlEndereco, [endereco.endereco, endereco.cep, endereco.cidade, endereco.numero, endereco.id], (errorEndereco, resultEndereco) => {
+    
+    if (errorEndereco) {
+      res.status(500).send({ status: false, message: "Erro ao atualizar dados do endereço" });
+    } else {
+      if (resultEndereco.affectedRows === 0) {
+        res.status(404).send({ status: false, message: "Endereço não encontrado" });
+      } else {
+        res.status(200).send({ status: true, message: "Endereço atualizado com sucesso" });
+      }
+    }
+  });
+});
+
+
 
 
 
