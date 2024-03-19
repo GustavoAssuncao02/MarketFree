@@ -125,6 +125,28 @@ router.post("/cadas/alterarUsuario", (req, res) => {
   });
 });
 
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+router.post("/cadas/alterarUsuarioDados", (req, res) => {
+  const cliente = req.body;
+  const sqlUsuario = `UPDATE usuario 
+                    SET email = ?, numeroTelefone = ?, nomeDeUsuario = ? 
+                    WHERE id = ?`;
+
+                      
+  connection.query(sqlUsuario, [cliente.email, cliente.numeroTelefone, cliente.nomeDeUsuario,  cliente.id], (errorUsuario, resultUsuario) => {    
+    if (errorUsuario) {
+      res.status(500).send({ status: false, message: "Erro ao atualizar dados do usuário" });
+    } else {
+      if (resultUsuario.affectedRows === 0) {
+        res.status(404).send({ status: false, message: "Usuário não encontrado" });
+      } else {
+        res.status(200).send({ status: true, message: "Dados atualizados com sucesso" });
+      }
+    }
+  });
+});
 //---------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/alterarEndereco", (req, res) => {
   const endereco = req.body; // Agora estamos recebendo o objeto completo do endereço

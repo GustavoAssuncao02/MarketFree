@@ -65,4 +65,9 @@ atualizarEndereco(endereco: any): Observable<any> {
   return this.http.post<any>('http://localhost:8081/cadas/alterarEndereco', endereco, { headers: headers });
 }
 
+atualizarClienteDados(cliente: any): Observable<any> {
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>('http://localhost:8081/cadas/alterarUsuarioDados', cliente, { headers: headers });
+}
+
 }

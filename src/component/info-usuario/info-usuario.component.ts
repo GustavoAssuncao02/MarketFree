@@ -18,7 +18,7 @@ export class InfoUserComponent {
     private route: ActivatedRoute,
     private authService: AuthService,
     private dados: DadosCompartilhado
-  ) {}
+  ) {} 
 
   salvarEdicaoCliente(campo: string, event: any) {
     const novoValorCliente = event.target.innerText; // Obtém o novo valor do campo editável

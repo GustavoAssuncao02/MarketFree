@@ -3,7 +3,7 @@
 <div class="row mb-2 bg-secondary justify-content-center">
   <div class="col-md-8">
     <div
-      class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light"
+      class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light "
       style="margin-top: 50px; width: 1000px; height: 450px"
     >
       <div
@@ -11,15 +11,31 @@
       >
         <div class="d-flex justify-content-between">
           <div
-            class="border p-1 bg-primary d-flex justify-content-between col-md-6 col-md-6 rounded"
+            class="border p-1 bg-primary d-flex justify-content-between col-md-6 col-md-6 rounded border-3 border-dark"
           >
             <h1 class="text-white">Dados básicos</h1>
+            
+
           </div>
+          
           <div
-            class="border p-1 bg-primary d-flex justify-content-between col-md-6 col-md-6 rounded"
+            class="border p-1 bg-primary d-flex justify-content-between col-md-6 col-md-6 rounded bg-light border-3 border-dark"
           >
             <h1>Segurança</h1>
           </div>
+          
+        </div>
+        <div class="col-md-4" style="margin-left: 100px; margin-top: 20px; ">
+          <h1>Dados da conta</h1>
+          <ul class="list-group">
+            <span class="fw-bold" style="font-size: 18px;">Email:</span>
+    <!-- Adicione contenteditable para tornar o campo editável -->
+    <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('email', $event)">{{ cliente?.email }}</li>
+    <span class="fw-bold mt-4" style="font-size: 18px;">Telefone:</span>
+    <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('numeroTelefone', $event)">{{ cliente?.numeroTelefone }}</li>
+    <span class="fw-bold mt-4" style="font-size: 18px;">Nome de Usuario:</span>
+    <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('nomeDeUsuario', $event)">{{ cliente?.nomeDeUsuario }}</li>
+          </ul>
         </div>
       </div>
     </div>
