@@ -46,6 +46,14 @@ export class InfoUserComponent {
     );
   }
 
+  exibirConfirmacao() {
+    if (confirm("Tem certeza que deseja apagar a conta?")) {
+        alert("Conta excluída com sucesso!");
+        window.location.href = 'http://localhost:4200';
+        
+    }
+}
+
   ngOnInit(): void {
     console.log(this.dados.getDadosLogin());
     const emailOuCPF = this.dados.getDadosLogin().emailOuCPF;

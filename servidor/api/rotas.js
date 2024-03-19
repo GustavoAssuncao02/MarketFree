@@ -176,10 +176,10 @@ router.post("/cadas/alterarEndereco", (req, res) => {
   const endereco = req.body; // Agora estamos recebendo o objeto completo do endereço
 
   const sqlEndereco = `UPDATE endereco 
-  SET endereco = ?, cep = ?, cidade = ?, numero = ? 
+  SET endereco = ?, cep = ?, cidade = ?, numero = ?, estado = ? 
   WHERE id = ?`;
   
-  connection.query(sqlEndereco, [endereco.endereco, endereco.cep, endereco.cidade, endereco.numero, endereco.id], (errorEndereco, resultEndereco) => {
+  connection.query(sqlEndereco, [endereco.endereco, endereco.cep, endereco.cidade, endereco.numero, endereco.estado, endereco.id], (errorEndereco, resultEndereco) => {
     if (errorEndereco) {
       res.status(500).send({ status: false, message: "Erro ao atualizar dados do endereço" });
     } else {
