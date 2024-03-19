@@ -20,6 +20,19 @@ export class InfoUserComponent {
     private dados: DadosCompartilhado
   ) {}
 
+  salvarEdicao(campo: string, event: any) {
+    const novoValor = event.target.innerText; // Obtém o novo valor do campo editável
+    this.cliente[campo] = novoValor; // Atualiza o valor do cliente
+    this.clientService.atualizarCliente(this.cliente).subscribe(
+       (response) => {
+        console.log('Dados atualizados com sucesso!');
+      },
+       (error) => {
+        console.error('Erro ao atualizar dados:', error);
+      }
+   );
+  }
+
   ngOnInit(): void {
     console.log(this.dados.getDadosLogin());
     const emailOuCPF = this.dados.getDadosLogin().emailOuCPF;

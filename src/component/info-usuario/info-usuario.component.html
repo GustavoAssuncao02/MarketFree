@@ -14,22 +14,23 @@
           <div class="col-md-6">
             <ul class="list-group">
               <span class="fw-bold" style="font-size: 18px;">Nome:</span>
-              <li class="list-group-item">{{ cliente?.nome }}</li>
-              <span class="fw-bold mt-4" style="font-size: 18px;">CPF:</span>
-              <li class="list-group-item">{{ cliente?.cpf }}</li>
-              <span class="fw-bold mt-4" style="font-size: 18px;">Endereço:</span> 
-              <li class="list-group-item">{{ endereco?.endereco }}</li>
-              <li class="list-group-item">{{ endereco?.cep }}</li>
-              <li class="list-group-item">{{ endereco?.cidade }}</li>
-              <li class="list-group-item">{{ endereco?.numero }}</li>
+      <!-- Adicione contenteditable para tornar o campo editável -->
+      <li class="list-group-item" contenteditable="true" (blur)="salvarEdicao('nome', $event)">{{ cliente?.nome }}</li>
+      <span class="fw-bold mt-4" style="font-size: 18px;">CPF:</span>
+      <li class="list-group-item" contenteditable="true" (blur)="salvarEdicao('cpf', $event)">{{ cliente?.cpf }}</li>
+      <span class="fw-bold mt-4" style="font-size: 18px;">Endereço:</span>
+      <li class="list-group-item" contenteditable="true" (blur)="salvarEdicao('endereco', $event)">{{ endereco?.endereco }}</li>
+      <li class="list-group-item" contenteditable="true" (blur)="salvarEdicao('cep', $event)">{{ endereco?.cep }}</li>
+      <li class="list-group-item" contenteditable="true" (blur)="salvarEdicao('cidade', $event)">{{ endereco?.cidade }}</li>
+      <li class="list-group-item" contenteditable="true" (blur)="salvarEdicao('numero', $event)">{{ endereco?.numero }}</li>
             </ul>
           </div>
           <div class="col-md-6">
             <ul class="list-group">
               <span class="fw-bold" style="font-size: 18px;">Ocupação:</span>
-              <li class="list-group-item">{{ cliente?.ocupacao }}</li>
-              <span class="fw-bold mt-4" style="font-size: 18px;">Pessoa Politicamente Exposta:</span>
-              <li class="list-group-item">{{ cliente?.politicamenteExposta }}</li>
+      <li class="list-group-item" contenteditable="true" (blur)="salvarEdicao('ocupacao', $event)">{{ cliente?.ocupacao }}</li>
+      <span class="fw-bold mt-4" style="font-size: 18px;">Pessoa Politicamente Exposta:</span>
+      <li class="list-group-item" contenteditable="true" (blur)="salvarEdicao('politicamenteExposta', $event)">{{ cliente?.politicamenteExposta }}</li>
             </ul>
           </div>
         </div>
