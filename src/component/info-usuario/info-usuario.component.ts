@@ -21,8 +21,8 @@ export class InfoUserComponent {
   ) {}
 
   salvarEdicaoCliente(campo: string, event: any) {
-    const novoValor = event.target.innerText; // Obtém o novo valor do campo editável
-    this.cliente[campo] = novoValor; // Atualiza o valor do cliente
+    const novoValorCliente = event.target.innerText; // Obtém o novo valor do campo editável
+    this.cliente[campo] = novoValorCliente; // Atualiza o valor do cliente
     this.clientService.atualizarCliente(this.cliente).subscribe( 
        (response) => {
         console.log('Dados atualizados com sucesso!');

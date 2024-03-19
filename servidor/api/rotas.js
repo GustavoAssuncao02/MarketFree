@@ -1,4 +1,3 @@
-
 const { Router } = require("express");
 const router = Router(); 
 const connection = require("../database/databaseConnection");
@@ -109,12 +108,11 @@ router.post("/cadas/leituraclienteEndereco", (req, res) => {
 //-----------------------------------------------------------------------------------------------------------//
 router.post("/cadas/alterarUsuario", (req, res) => {
   const cliente = req.body.id;
-
   const sqlUsuario = `UPDATE usuario 
                       SET nome = ?, cpf = ?, ocupacao = ?, politicamenteExposta = ? 
                       WHERE id = ?`;
-
-  connection.query(sqlUsuario, [cliente.nome, cliente.cpf, cliente.ocupacao, cliente.politicamenteExposta, cliente.id], (errorUsuario, resultUsuario) => {
+                      
+  connection.query(sqlUsuario, [cliente.nome, cliente.cpf, cliente.ocupacao, cliente.politicamenteExposta, cliente.id], (errorUsuario, resultUsuario) => {    
     if (errorUsuario) {
       res.status(500).send({ status: false, message: "Erro ao atualizar dados do usuário" });
     } else {
