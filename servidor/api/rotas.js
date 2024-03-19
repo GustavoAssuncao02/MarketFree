@@ -107,7 +107,7 @@ router.post("/cadas/leituraclienteEndereco", (req, res) => {
 });
 //-----------------------------------------------------------------------------------------------------------//
 router.post("/cadas/alterarUsuario", (req, res) => {
-  const cliente = req.body.id;
+  const cliente = req.body; // Agora req.body contém todo o objeto cliente
   const sqlUsuario = `UPDATE usuario 
                       SET nome = ?, cpf = ?, ocupacao = ?, politicamenteExposta = ? 
                       WHERE id = ?`;
@@ -118,6 +118,8 @@ router.post("/cadas/alterarUsuario", (req, res) => {
     } else {
       if (resultUsuario.affectedRows === 0) {
         res.status(404).send({ status: false, message: "Usuário não encontrado" });
+      } else {
+        res.status(200).send({ status: true, message: "Dados atualizados com sucesso" });
       }
     }
   });
@@ -125,13 +127,13 @@ router.post("/cadas/alterarUsuario", (req, res) => {
 
 //---------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/alterarEndereco", (req, res) => {
-  const endereco = req.body.id;
+  const endereco = req.body; // Agora estamos recebendo o objeto completo do endereço
 
   const sqlEndereco = `UPDATE endereco 
   SET endereco = ?, cep = ?, cidade = ?, numero = ? 
-  WHERE id = ?`
+  WHERE id = ?`;
+  
   connection.query(sqlEndereco, [endereco.endereco, endereco.cep, endereco.cidade, endereco.numero, endereco.id], (errorEndereco, resultEndereco) => {
-    
     if (errorEndereco) {
       res.status(500).send({ status: false, message: "Erro ao atualizar dados do endereço" });
     } else {
@@ -143,6 +145,7 @@ router.post("/cadas/alterarEndereco", (req, res) => {
     }
   });
 });
+
 
 
 
