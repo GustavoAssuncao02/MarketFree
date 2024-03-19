@@ -70,4 +70,8 @@ atualizarClienteDados(cliente: any): Observable<any> {
   return this.http.post<any>('http://localhost:8081/cadas/alterarUsuarioDados', cliente, { headers: headers });
 }
 
+atualizarClienteSegurança(cliente: any): Observable<any> {
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>('http://localhost:8081/cadas/alterarUsuarioSeguranca', cliente, { headers: headers });
+}
 }

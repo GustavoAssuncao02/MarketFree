@@ -16,6 +16,7 @@ import { LoginComponent } from '../component/login/login.component';
 import { PerfilComponent } from '../component/perfil/perfil.component';
 import { InfoUserComponent } from '../component/info-usuario/info-usuario.component';
 import { DadosUsuarioComponent } from '../component/dados-usuario/dados-usuario.component';
+import { DadosSegurancaComponent } from '../component/dados-seguranca/dados-seguranca.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { DadosUsuarioComponent } from '../component/dados-usuario/dados-usuario.
     PerfilComponent,
     InfoUserComponent,
     DadosUsuarioComponent,
+    DadosSegurancaComponent,
   ],
   imports: [
     BrowserModule,

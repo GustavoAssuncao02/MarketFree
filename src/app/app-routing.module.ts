@@ -8,6 +8,7 @@ import { LoginComponent } from '../component/login/login.component';
 import { PerfilComponent } from '../component/perfil/perfil.component';
 import { InfoUserComponent } from '../component/info-usuario/info-usuario.component';
 import { DadosUsuarioComponent } from '../component/dados-usuario/dados-usuario.component';
+import { DadosSegurancaComponent } from '../component/dados-seguranca/dados-seguranca.component';
 
 const routes: Routes = [
   { path: '', component:HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'perfil' , component: PerfilComponent},
   { path: 'informações' , component: InfoUserComponent},
   { path: 'dados' , component: DadosUsuarioComponent},
+  { path: 'segurança' , component: DadosSegurancaComponent},
 ];
 
 @NgModule({
