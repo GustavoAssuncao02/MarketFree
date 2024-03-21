@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ClientService } from '../../services/apiservice.service';
 import { DadosCompartilhado } from '../form-endereco/dados';
 import { Router } from '@angular/router';
-
+import { cpf } from 'cpf-cnpj-validator';
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -15,11 +15,18 @@ export class FormComponent implements OnInit {
   clientArray: any[] = [];
   isResultLoaded = false;
   formClient!: FormGroup;
+  cpfInput: string = '';
+  cpfValido: boolean = false;
+
+ 
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.getUsuario();
   }
-
+  
+  validarCPF() {
+    this.cpfValido = cpf.isValid(this.cpfInput);
+  }
   getUsuario() {
     this.clientService.getUsuarios().subscribe(
       (resultData: any) => {

@@ -15,8 +15,12 @@
   />
 </div>
 <div class="campo-form">
-  <label for="nome">CPF:</label>
-  <input type="text" formControlName="cpf" placeholder="CPF" />
+  <label for="cpf">CPF:</label>
+  <input  formControlName="cpf" placeholder="CPF" [(ngModel)]="cpfInput" (input)="validarCPF()" maxlength="11"/>
+  
+  <div *ngIf="cpfInput && !cpfValido" class="mensagem-invalido" class="text-sm">
+    <p class="text-danger"  style="font-size: 10px">O CPF é inválido!</p>
+  </div>
 </div>
 <div class="campo-form">
   <label for="nome">Data de Nascimento:</label>
@@ -46,7 +50,7 @@
   <label for="nome">E-mail:</label>
   <input type="email" formControlName="email" placeholder="E-mail"/>
 </div>
-<div class="campo-form">
+<div class="campo-form ">
   <label for="nome">Senha:</label>
   <input type="password" formControlName="senha" placeholder="Senha"/>
 </div>
@@ -61,5 +65,5 @@
     <option value="Não">Não</option>
   </select>
 </div>
-  <button type="submit">Prosseguir</button>
+  <button type="submit" [disabled]="!cpfValido">Prosseguir</button>
 </form>
