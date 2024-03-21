@@ -4,8 +4,10 @@
 <form [formGroup]="formClient" (ngSubmit)="onSubmit()" class="formulario">
   <div class="campo-form">
   <label for="nome">Nome:</label>
-  <input type="text" formControlName="nome" placeholder="nome" required/>
+  <input type="text" formControlName="nome" placeholder="nome" required/> 
+  
 </div>
+
 <div class="campo-form">
   <label for="nome">Nome de usuário:</label>
   <input
@@ -17,7 +19,6 @@
 <div class="campo-form">
   <label for="cpf">CPF:</label>
   <input  formControlName="cpf" placeholder="CPF" [(ngModel)]="cpfInput" (input)="validarCPF()" maxlength="11" required/>
-  
   <div *ngIf="cpfInput && !cpfValido" class="mensagem-invalido" class="text-sm">
     <p class="text-danger"  style="font-size: 10px">O CPF é inválido!</p>
   </div>
@@ -65,5 +66,5 @@
     <option value="Não">Não</option>
   </select>
 </div>
-  <button type="submit" [disabled]="!cpfValido">Prosseguir</button>
+  <button type="submit" >Prosseguir</button>
   

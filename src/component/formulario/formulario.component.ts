@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ClientService } from '../../services/apiservice.service';
 import { DadosCompartilhado } from '../form-endereco/dados';
 import { Router } from '@angular/router';
 import { cpf } from 'cpf-cnpj-validator';
+
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })
-
 export class FormComponent implements OnInit {
   clientArray: any[] = [];
   isResultLoaded = false;
@@ -18,7 +17,6 @@ export class FormComponent implements OnInit {
   cpfInput: string = '';
   cpfValido: boolean = false;
 
- 
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.getUsuario();
@@ -27,6 +25,15 @@ export class FormComponent implements OnInit {
   validarCPF() {
     this.cpfValido = cpf.isValid(this.cpfInput);
   }
+
+  checkFields() {
+    if (this.formClient.invalid) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+  }
+  
+
   getUsuario() {
     this.clientService.getUsuarios().subscribe(
       (resultData: any) => {
@@ -39,6 +46,7 @@ export class FormComponent implements OnInit {
       }
     );
   }
+
   createForm() {
     this.formClient = this.fb.group({
       nome: '',
@@ -56,7 +64,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    console.log(this.dadosService)
+    console.log(this.dadosService);
   }
   
   register() {
@@ -79,9 +87,12 @@ export class FormComponent implements OnInit {
   } 
 
   onSubmit() {
-    this.dadosService.setDadosFormulario(this.formClient.value);
-    this.router.navigate(['/CadastroEndereco']);
-    console.log(this.dadosService)
+    if (this.formClient.valid) {
+      this.dadosService.setDadosFormulario(this.formClient.value);
+      this.router.navigate(['/CadastroEndereco']);
+      console.log(this.dadosService);
+    } else {
+      alert('Por favor, preencha todos os campos.');
+    }
   }
 }
-
