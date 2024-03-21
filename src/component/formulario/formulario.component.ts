@@ -16,6 +16,8 @@ export class FormComponent implements OnInit {
   formClient!: FormGroup;
   cpfInput: string = '';
   cpfValido: boolean = false;
+  nomeInput: string = '';
+  nomeValido: boolean = false;
 
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
@@ -29,7 +31,16 @@ export class FormComponent implements OnInit {
       this.cpfValido = false;
     }
   }
+  validarNome(){
+    if (this.nomeInput.length > 3) {
+      this.nomeValido = true
+    } else {
+      this.nomeValido = false;
+    }
+  }
 
+
+  
   checkFields() {
     if (this.formClient.invalid) {
       alert("Por favor, preencha todos os campos.");
