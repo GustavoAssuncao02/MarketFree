@@ -15,8 +15,12 @@
   <input
     type="text"
     formControlName="nomeDeUsuario"
-    placeholder="nome de usuário" required
+    placeholder="nome de usuário" [(ngModel)]="nomeUserInput" (input)="validarNomeUsuario()"
+    required
   />
+  <div *ngIf="nomeUserInput && !nomeUserValido" class="mensagem-invalido" class="text-sm">
+    <p class="text-danger"  style="font-size: 10px">O nome de usuário deve ser maior</p>
+  </div> 
 </div>
 <div class="campo-form">
   <label for="cpf">CPF:</label>

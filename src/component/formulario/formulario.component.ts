@@ -18,6 +18,8 @@ export class FormComponent implements OnInit {
   cpfValido: boolean = false;
   nomeInput: string = '';
   nomeValido: boolean = false;
+  nomeUserValido: boolean = false;
+  nomeUserInput: string = '';
 
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
@@ -38,9 +40,15 @@ export class FormComponent implements OnInit {
       this.nomeValido = false;
     }
   }
+  validarNomeUsuario(){
+    if (this.nomeUserInput.length > 3) {
+      this.nomeUserValido = true
+    } else {
+      this.nomeUserValido = false;
+    }
+  }
 
 
-  
   checkFields() {
     if (this.formClient.invalid) {
       alert("Por favor, preencha todos os campos.");
