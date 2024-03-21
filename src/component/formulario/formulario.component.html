@@ -4,19 +4,19 @@
 <form [formGroup]="formClient" (ngSubmit)="onSubmit()" class="formulario">
   <div class="campo-form">
   <label for="nome">Nome:</label>
-  <input type="text" formControlName="nome" placeholder="nome" />
+  <input type="text" formControlName="nome" placeholder="nome" required/>
 </div>
 <div class="campo-form">
   <label for="nome">Nome de usuário:</label>
   <input
     type="text"
     formControlName="nomeDeUsuario"
-    placeholder="nome de usuário"
+    placeholder="nome de usuário" required
   />
 </div>
 <div class="campo-form">
   <label for="cpf">CPF:</label>
-  <input  formControlName="cpf" placeholder="CPF" [(ngModel)]="cpfInput" (input)="validarCPF()" maxlength="11"/>
+  <input  formControlName="cpf" placeholder="CPF" [(ngModel)]="cpfInput" (input)="validarCPF()" maxlength="11" required/>
   
   <div *ngIf="cpfInput && !cpfValido" class="mensagem-invalido" class="text-sm">
     <p class="text-danger"  style="font-size: 10px">O CPF é inválido!</p>
@@ -27,7 +27,7 @@
   <input
     type="date"
     formControlName="dataNascimento"
-    placeholder="Data de nascimento"
+    placeholder="Data de nascimento" required
   />
 </div>
 <div class="campo-form">
@@ -35,12 +35,12 @@
   <input
     type="text"
     formControlName="numeroTelefone"
-    placeholder="Número de Telefone"
+    placeholder="Número de Telefone" required
   />
 </div>
 <div class="campo-form">
   <label for="nome">Gênero:</label>
-  <select formControlName="genero">
+  <select formControlName="genero" required>
     <option value="masculino">Masculino</option>
     <option value="feminino">Feminino</option>
     <option value="prefiroNaoInformar">Prefiro não informar</option>
@@ -48,22 +48,22 @@
 </div>
 <div class="campo-form">
   <label for="nome">E-mail:</label>
-  <input type="email" formControlName="email" placeholder="E-mail"/>
+  <input type="email" formControlName="email" placeholder="E-mail" required/>
 </div>
 <div class="campo-form ">
   <label for="nome">Senha:</label>
-  <input type="password" formControlName="senha" placeholder="Senha"/>
+  <input type="password" formControlName="senha" placeholder="Senha" required/>
 </div>
 <div class="campo-form">
   <label for="nome">Ocupação:</label>
-  <input type="text" formControlName="ocupacao" placeholder="ocupação" />
+  <input type="text" formControlName="ocupacao" placeholder="ocupação" required/>
 </div>
 <div class="campo-form">
   <label for="nome">Pessoa Politicamente Exposta::</label>
-  <select formControlName="politicamenteExposta">
+  <select formControlName="politicamenteExposta" required>
     <option value="Sim">Sim</option>
     <option value="Não">Não</option>
   </select>
 </div>
   <button type="submit" [disabled]="!cpfValido">Prosseguir</button>
-</form>
+  
