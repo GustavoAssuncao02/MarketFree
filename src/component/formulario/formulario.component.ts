@@ -23,7 +23,11 @@ export class FormComponent implements OnInit {
   }
   
   validarCPF() {
-    this.cpfValido = cpf.isValid(this.cpfInput);
+    if (this.cpfInput.length === 11) {
+      this.cpfValido = cpf.isValid(this.cpfInput);
+    } else {
+      this.cpfValido = false;
+    }
   }
 
   checkFields() {

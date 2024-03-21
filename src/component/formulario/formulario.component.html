@@ -19,7 +19,7 @@
 <div class="campo-form">
   <label for="cpf">CPF:</label>
   <input  formControlName="cpf" placeholder="CPF" [(ngModel)]="cpfInput" (input)="validarCPF()" maxlength="11" required/>
-  <div *ngIf="cpfInput && !cpfValido" class="mensagem-invalido" class="text-sm">
+  <div *ngIf="cpfInput.length === 11 && !cpfValido" class="mensagem-invalido" class="text-sm">
     <p class="text-danger"  style="font-size: 10px">O CPF é inválido!</p>
   </div>
 </div>
