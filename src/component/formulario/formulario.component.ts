@@ -4,7 +4,6 @@ import { ClientService } from '../../services/apiservice.service';
 import { DadosCompartilhado } from '../form-endereco/dados';
 import { Router } from '@angular/router';
 import { cpf } from 'cpf-cnpj-validator';
-
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
