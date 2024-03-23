@@ -40,10 +40,14 @@
 <div class="campo-form">
   <label for="nome">Número de Telefone:</label>
   <input
+  [(ngModel)]="numeroInput" (input)="validarNumero()"
     type="text"
     formControlName="numeroTelefone"
-    placeholder="Número de Telefone" required
+    placeholder="Número de Telefone" maxlength="11" required
   />
+  <div *ngIf="numeroInput && !numeroValido" class="mensagem-invalido" class="text-sm">
+    <p class="text-danger"  style="font-size: 10px">O numero não é valido</p>
+  </div> 
 </div>
 <div class="campo-form">
   <label for="nome">Gênero:</label>
@@ -55,7 +59,10 @@
 </div>
 <div class="campo-form">
   <label for="nome">E-mail:</label>
-  <input type="email" formControlName="email" placeholder="E-mail" required/>
+  <input type="email" formControlName="email" placeholder="E-mail"  [(ngModel)]="emailInput" (input)="validarEmail()"required/>
+  <div *ngIf="emailInput && !emailValido" class="mensagem-invalido" class="text-sm">
+    <p class="text-danger"  style="font-size: 10px">O numero não é valido</p>
+  </div> 
 </div>
 <div class="campo-form ">
   <label for="nome">Senha:</label>

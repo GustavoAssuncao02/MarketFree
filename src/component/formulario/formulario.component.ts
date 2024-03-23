@@ -4,6 +4,7 @@ import { ClientService } from '../../services/apiservice.service';
 import { DadosCompartilhado } from '../form-endereco/dados';
 import { Router } from '@angular/router';
 import { cpf } from 'cpf-cnpj-validator';
+import { Validators } from '@angular/forms';
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -19,17 +20,30 @@ export class FormComponent implements OnInit {
   nomeValido: boolean = false;
   nomeUserValido: boolean = false;
   nomeUserInput: string = '';
+  numeroInput: string = '';
+  numeroValido: boolean = false;
+  emailInput: string = '';
+  emailValido: boolean = false;
 
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.getUsuario();
   }
-  
+  validarEmail(){
+
+  }
   validarCPF() {
     if (this.cpfInput.length === 11) {
       this.cpfValido = cpf.isValid(this.cpfInput);
     } else {
       this.cpfValido = false;
+    }
+  }
+  validarNumero() {
+    if (this.numeroInput.length === 11) {
+      this.numeroValido = true
+    } else {
+      this.numeroValido = false;
     }
   }
   validarNome(){
