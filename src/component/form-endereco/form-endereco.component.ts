@@ -4,6 +4,7 @@ import { ClientService } from '../../services/apiservice.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DadosCompartilhado } from './dados';
 import { Router } from '@angular/router';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-endereco',
@@ -21,6 +22,15 @@ export class FormEnderecoComponent {
     this.getUsuario();
   }
 
+  get cepControl() {
+    return this.formEndereco.get('cep');
+  }
+
+  isCepInvalid() {
+    const control = this.cepControl;
+    return control ? control.invalid && (control.dirty || control.touched) : false;
+  }
+
   getUsuario() {
     this.clientService.getUsuarios().subscribe(
       (resultData: any) => {
@@ -35,10 +45,10 @@ export class FormEnderecoComponent {
   }
   createForm() {
     this.formEndereco = this.fb.group({
-      cep: '',
-      endereco: '',
-      cidade: '',
-      numero: '',
+      cep: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{3}$/)]],
+      endereco: ['', Validators.required],
+      cidade: ['', Validators.required],
+      numero: ['', Validators.required],
       complemento: '',
       genero: '',
       estado: '',

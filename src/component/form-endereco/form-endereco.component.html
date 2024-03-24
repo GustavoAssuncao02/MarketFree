@@ -7,7 +7,11 @@
         <div class="campo-form">
             <label for="cep"
             placeholder="cep">CEP:</label>
-            <input type="text" formControlName="cep" placeholder="CEP" />
+            <input type="text" formControlName="cep" placeholder="CEP"  required=""/>
+            <div *ngIf="isCepInvalid()">
+                <div *ngIf="cepControl?.errors?.['required']" class="text-danger" style="font-size: 10px;">CEP é obrigatório.</div>
+                <div *ngIf="cepControl?.errors?.['pattern']" class="text-danger" style="font-size: 10px;">Formato de CEP inválido. Use XXXXX-XXX.</div>
+              </div>
         </div>
         <div class="campo-form">
             <label for="endereco"
