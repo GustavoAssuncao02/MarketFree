@@ -60,17 +60,23 @@
 <div class="campo-form">
   <label for="nome">E-mail:</label>
   <input type="email" formControlName="email" placeholder="E-mail" required/>
-  <div *ngIf="exibirErro()" class="mensagem-invalido text-sm">
+  <div *ngIf="exibirErroEmail()" class="mensagem-invalido text-sm">
     <p class="text-danger" style="font-size: 10px">E-mail inválido</p>
   </div>
 </div>
 <div class="campo-form ">
   <label for="nome">Senha:</label>
-  <input type="password" formControlName="senha" placeholder="Senha" required/>
+  <input type="password" formControlName="senha" placeholder="Senha" [(ngModel)]="senhaInput" (input)="validarSenha()"required/>
+  <div *ngIf="senhaInput && !senhaValido" class="mensagem-invalido" class="text-sm">
+    <p class="text-danger"  style="font-size: 10px">A senha precisa ter ao menos 5 caracteres</p>
+  </div> 
 </div>
 <div class="campo-form">
   <label for="nome">Ocupação:</label>
-  <input type="text" formControlName="ocupacao" placeholder="ocupação" required/>
+  <input type="text" formControlName="ocupacao" placeholder="ocupação" [(ngModel)]="ocupacaoInput" (input)="validarOcupacao()" required/>
+  <div *ngIf="ocupacaoInput && !ocupacaoValido" class="mensagem-invalido" class="text-sm">
+    <p class="text-danger"  style="font-size: 10px">A ocupação precisa ter mais de 3 caracteres</p>
+  </div> 
 </div>
 <div class="campo-form">
   <label for="nome">Pessoa Politicamente Exposta::</label>

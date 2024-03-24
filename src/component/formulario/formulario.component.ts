@@ -11,6 +11,7 @@ import { Validators } from '@angular/forms';
   styleUrl: './formulario.component.css'
 })
 export class FormComponent implements OnInit {
+
   clientArray: any[] = [];
   isResultLoaded = false;
   formClient!: FormGroup;
@@ -25,15 +26,27 @@ export class FormComponent implements OnInit {
   emailInput: string = '';
   emailValido: boolean = false;
   mensagemErro: boolean = false;
+  ocupacaoInput: string = '';
+  ocupacaoValido: boolean = false;
+  senhaInput: string = '';
+  senhaValido: boolean = false;
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.getUsuario();
   }
   
+  validarSenha() {
+    if (this.senhaInput.length >= 5) {
+      this.senhaValido = true
+    } else {
+      this.senhaValido = false;
+    }
+    }
+
   get emailControl() {
     return this.formClient.get('email');
   }
-  exibirErro() {
+  exibirErroEmail() {
     const emailField = this.emailControl;
     return emailField && emailField.invalid && (emailField.dirty || emailField.touched);
   }
@@ -59,6 +72,14 @@ export class FormComponent implements OnInit {
       this.nomeValido = false;
     }
   }
+  validarOcupacao(){
+    if (this.ocupacaoInput.length > 3) {
+      this.ocupacaoValido = true
+    } else {
+      this.ocupacaoValido = false;
+    }
+  }
+
   validarNomeUsuario(){
     if (this.nomeUserInput.length > 3) {
       this.nomeUserValido = true
