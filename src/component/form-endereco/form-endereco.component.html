@@ -7,7 +7,7 @@
         <div class="campo-form">
             <label for="cep"
             placeholder="cep">CEP:</label>
-            <input type="text" formControlName="cep" placeholder="CEP"  required=""/>
+            <input type="text" formControlName="cep" placeholder="CEP"  required/>
             <div *ngIf="isCepInvalid()">
                 <div *ngIf="cepControl?.errors?.['required']" class="text-danger" style="font-size: 10px;">CEP é obrigatório.</div>
                 <div *ngIf="cepControl?.errors?.['pattern']" class="text-danger" style="font-size: 10px;">Formato de CEP inválido. Use XXXXX-XXX.</div>
@@ -16,29 +16,30 @@
         <div class="campo-form">
             <label for="endereco"
             placeholder="endereco">Endereço:</label>
-            <input type="text" formControlName="endereco" placeholder="Endereço" />
+            <input type="text" formControlName="endereco" placeholder="Endereço" required/>
         </div>
         <div class="campo-form">
             <label for="cidade"
             placeholder="cidade">Cidade:</label>
-            <input type="text" formControlName="cidade" placeholder="Cidade" />
+            <input type="text" formControlName="cidade" placeholder="Cidade" required/>
         </div>
         <div class="campo-form">
             <label for="numero"
             placeholder="numero">Número:</label>
-            <input type="text" formControlName="numero" placeholder="Número" />
+            <input type="text" formControlName="numero" placeholder="Número" required/>
         </div>
         <div class="campo-form">
             <label for="complemento"
             placeholder="complemento">Complemento:</label>
-            <input type="text" formControlName="complemento" placeholder="Complemento" />
+            <input type="text" formControlName="complemento" placeholder="Complemento" required/>
         </div>
         <div class="campo-form">
             <label for="estado"
             placeholder="estado">Estado:</label>
-            <input type="text" formControlName="estado" placeholder="Estado" />
+            <input type="text" formControlName="estado" placeholder="Estado" required/>
         </div>
         <button type="submit" >Cadastrar</button>
     </form>
+<div class="text-danger text-center mt-3" *ngIf="mensagemErro">Por favor, preencha todos os campos para concluir o cadastro </div>
+
 </div>
-    

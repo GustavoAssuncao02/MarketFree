@@ -16,6 +16,7 @@ export class FormEnderecoComponent {
   isResultLoaded = false;
   formEndereco!: FormGroup;
   dadosFormulario: any;
+  mensagemErro: boolean = false;
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.dadosFormulario = this.dadosService.getDadosFormulario();
@@ -43,15 +44,17 @@ export class FormEnderecoComponent {
       }
     );
   }
+
+  
   createForm() {
     this.formEndereco = this.fb.group({
       cep: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{3}$/)]],
       endereco: ['', Validators.required],
       cidade: ['', Validators.required],
       numero: ['', Validators.required],
-      complemento: '',
-      genero: '',
-      estado: '',
+      complemento: ['', Validators.required],
+      //genero: '',
+      estado: ['', Validators.required],
     });
   }
 
@@ -98,10 +101,26 @@ export class FormEnderecoComponent {
       });
     }
   }
+  todosCamposPreenchidos(): boolean {
+    const controls = this.formEndereco.controls;
+    for (const controlName in controls) {
+      if (controls.hasOwnProperty(controlName)) {
+        const control = controls[controlName];
+        if (control.invalid || !control.value) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
   onSubmitEndereco() {
-    this.registerEndereco();
-    this.router.navigate(['/']);
+    if (this.todosCamposPreenchidos()) {
+      this.registerEndereco();
+      this.router.navigate(['/']);
+    }else{
+      this.mensagemErro = true;
+    }
   }
 }
 
