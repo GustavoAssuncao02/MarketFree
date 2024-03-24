@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ClientService } from '../../services/apiservice.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DadosCompartilhado } from './dados';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-endereco',
@@ -15,7 +16,7 @@ export class FormEnderecoComponent {
   formEndereco!: FormGroup;
   dadosFormulario: any;
 
-  constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado) {
+  constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.dadosFormulario = this.dadosService.getDadosFormulario();
     this.getUsuario();
   }
@@ -90,6 +91,7 @@ export class FormEnderecoComponent {
 
   onSubmitEndereco() {
     this.registerEndereco();
+    this.router.navigate(['/']);
   }
 }
 
