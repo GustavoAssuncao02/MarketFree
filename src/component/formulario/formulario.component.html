@@ -59,10 +59,10 @@
 </div>
 <div class="campo-form">
   <label for="nome">E-mail:</label>
-  <input type="email" formControlName="email" placeholder="E-mail"  [(ngModel)]="emailInput" (input)="validarEmail()"required/>
-  <div *ngIf="emailInput && !emailValido" class="mensagem-invalido" class="text-sm">
-    <p class="text-danger"  style="font-size: 10px">O numero não é valido</p>
-  </div> 
+  <input type="email" formControlName="email" placeholder="E-mail" required/>
+  <div *ngIf="exibirErro()" class="mensagem-invalido text-sm">
+    <p class="text-danger" style="font-size: 10px">E-mail inválido</p>
+  </div>
 </div>
 <div class="campo-form ">
   <label for="nome">Senha:</label>
@@ -80,4 +80,5 @@
   </select>
 </div>
   <button type="submit">Prosseguir</button>
-  
+</form>
+  <div class="text-danger mt-3" *ngIf="mensagemErro">Por favor, preencha todos os campos para prosseguir </div>

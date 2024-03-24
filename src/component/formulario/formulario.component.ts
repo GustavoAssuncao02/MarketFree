@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ClientService } from '../../services/apiservice.service';
 import { DadosCompartilhado } from '../form-endereco/dados';
 import { Router } from '@angular/router';
@@ -24,14 +24,20 @@ export class FormComponent implements OnInit {
   numeroValido: boolean = false;
   emailInput: string = '';
   emailValido: boolean = false;
-
+  mensagemErro: boolean = false;
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.getUsuario();
   }
-  validarEmail(){
-
+  
+  get emailControl() {
+    return this.formClient.get('email');
   }
+  exibirErro() {
+    const emailField = this.emailControl;
+    return emailField && emailField.invalid && (emailField.dirty || emailField.touched);
+  }
+ 
   validarCPF() {
     if (this.cpfInput.length === 11) {
       this.cpfValido = cpf.isValid(this.cpfInput);
@@ -62,10 +68,13 @@ export class FormComponent implements OnInit {
   }
 
 
-  checkFields() {
-    if (this.formClient.invalid) {
-      alert("Por favor, preencha todos os campos.");
-      return;
+  verificarCampos() {
+    if (this.formClient.valid) {
+      this.dadosService.setDadosFormulario(this.formClient.value);
+      this.router.navigate(['/CadastroEndereco']);
+      console.log(this.dadosService);
+    } else {
+      this.mensagemErro = true;
     }
   }
   
@@ -85,18 +94,19 @@ export class FormComponent implements OnInit {
 
   createForm() {
     this.formClient = this.fb.group({
-      nome: '',
-      nomeDeUsuario: '',
-      cpf: '',
-      dataNascimento: '',
-      numeroTelefone: '',
-      genero: '',
-      email: '',
-      senha: '',
-      ocupacao: '',
-      politicamenteExposta: '',
+      nome: ['', Validators.required],
+      nomeDeUsuario: ['', Validators.required],
+      cpf: ['', Validators.required],
+      dataNascimento: ['', Validators.required],
+      numeroTelefone: ['', Validators.required],
+      genero: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', Validators.required],
+      ocupacao: ['', Validators.required],
+      politicamenteExposta: ['', Validators.required],
     });
   }
+  
 
   ngOnInit(): void {
     this.createForm();
@@ -123,12 +133,6 @@ export class FormComponent implements OnInit {
   } 
 
   onSubmit() {
-    if (this.formClient.valid) {
-      this.dadosService.setDadosFormulario(this.formClient.value);
-      this.router.navigate(['/CadastroEndereco']);
-      console.log(this.dadosService);
-    } else {
-      alert('Por favor, preencha todos os campos.');
-    }
+    this.verificarCampos();
   }
 }
