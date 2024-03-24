@@ -22,6 +22,7 @@ export class FormEnderecoComponent {
     this.dadosFormulario = this.dadosService.getDadosFormulario();
     this.getUsuario();
   }
+  
 
   get cepControl() {
     return this.formEndereco.get('cep');
@@ -113,6 +114,7 @@ export class FormEnderecoComponent {
     }
     return true;
   }
+
 
   onSubmitEndereco() {
     if (this.todosCamposPreenchidos()) {
