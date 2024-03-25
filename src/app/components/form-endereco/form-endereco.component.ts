@@ -93,7 +93,6 @@ export class FormEnderecoComponent {
       this.clientService.addUsuario(bodyDataEndereco, bodyDataCliente).subscribe({
         next: (resultData: any) => {
           console.log(resultData);
-          alert('Sucesso ao registrar');
           this.getUsuario();
         },
         error: (error: any) => {
@@ -119,7 +118,7 @@ export class FormEnderecoComponent {
   onSubmitEndereco() {
     if (this.todosCamposPreenchidos()) {
       this.registerEndereco();
-      this.router.navigate(['/']);
+      this.router.navigate(['/cadastrado']);
     }else{
       this.mensagemErro = true;
     }

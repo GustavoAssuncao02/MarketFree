@@ -15,6 +15,7 @@ import { LoginPageComponent } from './Paginas/login-page/login-page.component';
 import { PerfilPageComponent } from './Paginas/perfil-page/perfil-page.component';
 import { InformacoesComponent } from './Paginas/informacoes-usuario/informacoes.component';
 import { DadosSegurancaPageComponent } from './Paginas/dados-seguranca-page/dados-seguranca-page.component';
+import { CadastroSucessoComponent } from './Paginas/cadastro-sucesso/cadastro-sucesso.component';
 const routes: Routes = [
   { path: '', component:HomeComponent},
   { path: 'cadastre', component:CadastreComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'informações' , component: InformacoesComponent},
   { path: 'dados' , component: DadosUsuarioComponent},
   { path: 'segurança' , component: DadosSegurancaPageComponent},
+  { path: 'cadastrado' , component: CadastroSucessoComponent},
 ];
 
 @NgModule({
