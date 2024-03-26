@@ -2,7 +2,7 @@
 
 <h2 class="Title">Preencha os dados abaixo para concluir seu login</h2>
 <div class="form-container">
-    <form [formGroup]="formLogin" (ngSubmit)="onSubmitLogin()">
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmitLogin()"> 
         <div class="form-group">
             <label for="emailOuCPF">E-mail ou CPF:</label>
             <input type="text" id="emailOuCPF" name="emailOuCPF" formControlName="emailOuCPF" required>

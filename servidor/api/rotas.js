@@ -285,21 +285,39 @@ router.post("/cadas/dado", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { emailOuCPF, senha } = req.body;
-  let sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
-  connection.query(sql, [emailOuCPF, senha], (error, results) => {
-    if (error) {
-      console.error("Erro ao executar a consulta:", error);
+  
+  // Verificar se o emailOuCPF é um email ou CPF
+  let sqlEmail = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
+  let sqlCPF = "SELECT * FROM usuario WHERE cpf = ? AND senha = ?";
+  
+  connection.query(sqlEmail, [emailOuCPF, senha], (errorEmail, resultsEmail) => {
+    if (errorEmail) {
+      console.error("Erro ao executar a consulta:", errorEmail);
       return res.status(500).json({ success: false, message: "Erro ao fazer login" });
     }
-    if (results.length > 0) {
-      const token = gerarToken(results[0].idUsuario);
+    if (resultsEmail.length > 0) {
+      const token = gerarToken(resultsEmail[0].idUsuario);
       console.log(token);
       return res.status(200).json({ success: true, message: "Login bem-sucedido", token: token });
     } else {
-      return res.status(401).json({ success: false, message: "Credenciais inválidas. Verifique seu e-mail ou CPF e senha e tente novamente." });
+      // Tentar fazer login com o CPF
+      connection.query(sqlCPF, [emailOuCPF, senha], (errorCPF, resultsCPF) => {
+        if (errorCPF) {
+          console.error("Erro ao executar a consulta:", errorCPF);
+          return res.status(500).json({ success: false, message: "Erro ao fazer login" });
+        }
+        if (resultsCPF.length > 0) {
+          const token = gerarToken(resultsCPF[0].idUsuario);
+          console.log(token);
+          return res.status(200).json({ success: true, message: "Login bem-sucedido", token: token });
+        } else {
+          return res.status(401).json({ success: false, message: "Credenciais inválidas. Verifique seu e-mail ou CPF e senha e tente novamente." });
+        }
+      });
     }
   });
 });
+
 
 //------------------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/apagarConta", (req, res) => {
