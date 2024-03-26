@@ -12,6 +12,10 @@ import { DadosCompartilhado } from '../form-endereco/dados';
 export class InfoUserComponent {
   cliente: any;
   endereco: any;
+  estadosBrasileiros: string[] = [
+    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG',
+    'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+  ];
 
   constructor(
     private clientService: ClientService,
@@ -20,9 +24,19 @@ export class InfoUserComponent {
     private dados: DadosCompartilhado
   ) {} 
 
+  atualizarEstado(event: any) {
+    const novoEstado = event.target.value;
+    console.log("Novo estado selecionado:", novoEstado);
+  
+    if (this.endereco) {
+      this.endereco.estado = novoEstado;
+    } else {
+      console.error('Endereço não definido');
+    }
+  }
   salvarEdicaoCliente(campo: string, event: any) {
-    const novoValorCliente = event.target.innerText; // Obtém o novo valor do campo editável
-    this.cliente[campo] = novoValorCliente; // Atualiza o valor do cliente
+    const novoValorCliente = event.target.innerText; 
+    this.cliente[campo] = novoValorCliente; 
     this.clientService.atualizarCliente(this.cliente).subscribe( 
        (response) => {
         console.log('Dados atualizados com sucesso!');
@@ -35,6 +49,7 @@ export class InfoUserComponent {
 
   salvarEdicaoEndereco(campo: string, event: any) {
     const novoValor = event.target.innerText; // Obtém o novo valor do campo editável
+    console.log(this.endereco)
     this.endereco[campo] = novoValor; // Atualiza o valor do endereço
     this.clientService.atualizarEndereco(this.endereco).subscribe( 
        (response) => {
