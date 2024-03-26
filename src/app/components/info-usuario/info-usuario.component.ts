@@ -32,48 +32,39 @@ export class InfoUserComponent {
   }
   atualizarEstado(event: any) {
     const novoEstado = event.target.value;
-    console.log("Novo estado selecionado:", novoEstado);
   
-    if (this.endereco) {
-      this.endereco.estado = novoEstado;
-      this.clientService.atualizarEndereco(this.endereco).subscribe( 
-        (response) => {
-         console.log('Dados do endereço atualizados com sucesso!');
-       },
-        (error) => {
-         console.error('Erro ao atualizar dados do endereço:', error);
-       }
-     );
-    } else {
-      console.error('Endereço não definido');
-    }
+   
   }
   salvarEdicaoCliente(campo: string, event: any) {
     const novoValorCliente = event.target.innerText; 
     this.cliente[campo] = novoValorCliente; 
-    this.clientService.atualizarCliente(this.cliente).subscribe( 
-       (response) => {
-        console.log('Dados atualizados com sucesso!');
-      },
-       (error) => {
-        console.error('Erro ao atualizar dados:', error);
-      }
-   );
+    
   }
+  enviandoAoBanco(){
+    this.clientService.atualizarCliente(this.cliente).subscribe( 
+      (response) => {
+       console.log('Dados atualizados com sucesso!');
+     },
+      (error) => {
+       console.error('Erro ao atualizar dados:', error);
+     }
+  );
+  this.clientService.atualizarEndereco(this.endereco).subscribe( 
+    (response) => {
+     console.log('Dados do endereço atualizados com sucesso!');
+   },
+    (error) => {
+     console.error('Erro ao atualizar dados do endereço:', error);
+   }
+ );
   
+  }
 
   salvarEdicaoEndereco(campo: string, event: any) {
     const novoValor = event.target.innerText; // Obtém o novo valor do campo editável
     console.log(this.endereco)
-    this.endereco[campo] = novoValor; // Atualiza o valor do endereço
-    this.clientService.atualizarEndereco(this.endereco).subscribe( 
-       (response) => {
-        console.log('Dados do endereço atualizados com sucesso!');
-      },
-       (error) => {
-        console.error('Erro ao atualizar dados do endereço:', error);
-      }
-    );
+    this.endereco[campo] = novoValor;
+    
   }
 
   exibirConfirmacao() {

@@ -19,7 +19,7 @@
             <div class="col-md-6">
               <ul class="list-group">
                 <span class="fw-bold" style="font-size: 18px;">Nome:</span>
-                <li class="list-group-item" *ngIf="editavel" contenteditable="true">{{
+                <li class="list-group-item" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoCliente('nome', $event)">{{
                   cliente?.nome }}</li>
                 <li class="list-group-item" *ngIf="!editavel">{{ cliente?.nome }}</li>
                 <span class="fw-bold mt-4" style="font-size: 18px;">CPF:</span>
@@ -60,6 +60,7 @@
         </div>
       </div>
       <button (click)="alterarEditavel()">Alterar Editável</button>
+      <button (click)="enviandoAoBanco()">Salvar Alterações</button>
       <br />
       <br />
       <br />
