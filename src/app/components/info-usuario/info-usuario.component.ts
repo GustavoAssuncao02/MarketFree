@@ -60,11 +60,36 @@ export class InfoUserComponent {
      console.error('Erro ao atualizar dados do endereço:', error);
    }
  );
-  
+ this.editavel = !this.editavel;
+  }
+  cancelarAlteracoes(){
+    this.definirDadosUsuario();
+    this.editavel = !this.editavel;
+  }
+  definirDadosUsuario(){
+    const emailOuCPF = this.dados.getDadosLogin().emailOuCPF;
+    this.clientService.getUsuariosEspecifico(emailOuCPF).subscribe(
+      (response) => {
+        this.cliente = response.data;
+        console.log(this.cliente);
+        this.clientService.getEndereco(this.cliente.idEndereco).subscribe(
+          (response) => {
+            this.endereco = response.data;
+            console.log(this.endereco);          
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   salvarEdicaoEndereco(campo: string, event: any) {
-    const novoValor = event.target.innerText; // Obtém o novo valor do campo editável
+    const novoValor = event.target.innerText;
     console.log(this.endereco)
     this.endereco[campo] = novoValor;
     
@@ -87,26 +112,7 @@ export class InfoUserComponent {
   
 
   ngOnInit(): void {
-    console.log(this.dados.getDadosLogin());
-    const emailOuCPF = this.dados.getDadosLogin().emailOuCPF;
-    this.clientService.getUsuariosEspecifico(emailOuCPF).subscribe(
-      (response) => {
-        this.cliente = response.data;
-        console.log(this.cliente);
-        this.clientService.getEndereco(this.cliente.idEndereco).subscribe(
-          (response) => {
-            this.endereco = response.data;
-            console.log(this.endereco);          
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.definirDadosUsuario()
   }
 }
 

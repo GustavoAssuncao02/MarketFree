@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-8">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light"
-        style="margin-top: 50px; width: 1000px; height: 640px">
+        style="margin-top: 50px; width: 1000px; height: 740px">
 
         <div class="col p-4 d-flex flex-column position-static" style="margin-left: 30px; margin-right: 30px;">
           <h1>Informações do usuário</h1>
@@ -66,10 +66,13 @@
               <button type="button" class="btn btn-danger mt-4" (click)="exibirConfirmacao()">Excluir Conta</button>
             </div>
           </div>
+          <div class="btn-group mt-5" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary mx-2" (click)="alterarEditavel()">Alterar dados</button>
+            <button type="button" class="btn btn-secondary mx-2" *ngIf="editavel" (click)="cancelarAlteracoes()">Cancelar Alterações</button>
+            <button type="button" class="btn btn-success mx-2" *ngIf="editavel"(click)="enviandoAoBanco()">Salvar Alterações</button>
+          </div>
         </div>
       </div>
-      <button (click)="alterarEditavel()">Alterar Editável</button>
-      <button (click)="enviandoAoBanco()">Salvar Alterações</button>
       <br />
       <br />
       <br />
