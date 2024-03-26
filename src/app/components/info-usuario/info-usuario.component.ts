@@ -30,10 +30,9 @@ export class InfoUserComponent {
   alterarEditavel() {
     this.editavel = !this.editavel;
   }
-  atualizarEstado(event: any) {
+  atualizarEstado(campo: string, event: any) {
     const novoEstado = event.target.value;
-  
-   
+    this.endereco[campo] = novoEstado
   }
   salvarEdicaoCliente(campo: string, event: any) {
     const novoValorCliente = event.target.innerText; 

@@ -23,22 +23,27 @@
                   cliente?.nome }}</li>
                 <li class="list-group-item" *ngIf="!editavel">{{ cliente?.nome }}</li>
                 <span class="fw-bold mt-4" style="font-size: 18px;">CPF:</span>
-                <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('cpf', $event)">{{
+                <li class="list-group-item" contenteditable="true" *ngIf="editavel" (blur)="salvarEdicaoCliente('cpf', $event)">{{
                   cliente?.cpf }}</li>
+                  <li class="list-group-item" *ngIf="!editavel">{{ cliente?.cpf }}</li>
                 <span class="fw-bold mt-4" style="font-size: 18px;">Endereço:</span>
-                <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoEndereco('endereco', $event)">{{
+                <li class="list-group-item" contenteditable="true" *ngIf="editavel" (blur)="salvarEdicaoEndereco('endereco', $event)">{{
                   endereco?.endereco }}</li>
+                  <li class="list-group-item" *ngIf="!editavel">{{ endereco?.endereco }}</li>
                 <span class="fw-bold" style="font-size: 12px;">CEP:</span>
-                <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoEndereco('cep', $event)">{{
+                <li class="list-group-item" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoEndereco('cep', $event)">{{
                   endereco?.cep }}</li>
+                  <li class="list-group-item" *ngIf="!editavel">{{ endereco?.cep }}</li>
                 <span class="fw-bold" style="font-size: 12px;">Cidade:</span>
-                <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoEndereco('cidade', $event)">{{
+                <li class="list-group-item"  *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoEndereco('cidade', $event)">{{
                   endereco?.cidade }}</li>
+                  <li class="list-group-item" *ngIf="!editavel">{{ endereco?.cidade }}</li>
                 <span class="fw-bold" style="font-size: 12px;">Numero:</span>
-                <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoEndereco('numero', $event)">{{
+                <li class="list-group-item" contenteditable="true" *ngIf="editavel" (blur)="salvarEdicaoEndereco('numero', $event)">{{
                   endereco?.numero }}</li>
+                  <li class="list-group-item" *ngIf="!editavel">{{ endereco?.numero }}</li>
                 <span class="fw-bold" style="font-size: 12px;">Estado:</span>
-                <select class="form-select" formControlName="estado" required (change)="atualizarEstado($event)">
+                <select class="form-select" formControlName="estado" required (change)="atualizarEstado('estado',$event)">
                   <option value="" disabled>Selecione um estado</option>
                   <option *ngFor="let estado of estadosBrasileiros" [value]="estado"
                     [selected]="estado === endereco?.estado">{{ estado }}</option>
