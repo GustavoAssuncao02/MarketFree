@@ -26,6 +26,8 @@ import { InformacoesComponent } from './Paginas/informacoes-usuario/informacoes.
 import { DadosComponent } from './Paginas/dados-usuario-page/dados.component';
 import { DadosSegurancaPageComponent } from './Paginas/dados-seguranca-page/dados-seguranca-page.component';
 import { CadastradoSucessoComponent } from './components/cadastrado-sucesso/cadastrado-sucesso.component';
+import { ContaExcluidaComponent } from './Paginas/conta-excluida/conta-excluida.component';
+import { ExclusaoComponent } from './components/exclusao/exclusao.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,8 @@ import { CadastradoSucessoComponent } from './components/cadastrado-sucesso/cada
     DadosComponent,
     DadosSegurancaPageComponent,
     CadastradoSucessoComponent,
+    ContaExcluidaComponent,
+    ExclusaoComponent,
   ],
   imports: [
     BrowserModule,

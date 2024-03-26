@@ -51,10 +51,8 @@ export class InfoUserComponent {
       console.log(this.cliente.id)
       this.clientService.apagarConta(this.cliente.id).subscribe(
         (response) => {
-          alert("Conta excluída com sucesso!");
           localStorage.removeItem('jwt_token');
-          window.location.href = 'http://localhost:4200';
-
+          window.location.href = 'http://localhost:4200/excluido';
         },
         (error) => {
           console.error('Erro ao apagar conta:', error);
