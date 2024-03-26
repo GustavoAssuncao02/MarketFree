@@ -1,4 +1,4 @@
-// client.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -49,6 +49,7 @@ export class ClientService {
   getUsuariosEspecifico(email: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const data = { email: email };
+    console.log(data)
     return this.http.post<any>('http://localhost:8081/cadas/leituracliente', data, { headers: headers });
   }
   getEndereco(id: string): Observable<any> {

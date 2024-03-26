@@ -58,15 +58,31 @@ router.get("/cadas/leitura", (req, res) => {
 });
 
 router.post("/cadas/leituracliente", (req, res) => {
+  console.log('cheguei')
   const email = req.body.email;
   const sql = "SELECT * FROM usuario WHERE email = ?";
-  
+  const sql2 = "SELECT * FROM usuario WHERE cpf = ?";
+  console.log('1')
   connection.query(sql, [email], (error, result) => {
     if (error) {
       res.status(500).send({ status: false, message: "Erro ao obter dados do usuário" });
     } else {
       if (result.length === 0) {
-        res.status(404).send({ status: false, message: "Usuário não encontrado" });
+        connection.query(sql2, [email], (error2, result2) => {
+          if (error2) {
+            res.status(500).send({ status: false, message: "Erro ao obter dados do usuário" });
+          } else {
+            if (result2.length === 0) {
+              res.status(404).send({ status: false, message: "Usuário não encontrado" });
+            } else {
+              res.status(200).send({
+                status: true,
+                data: result2[0],
+                message: "Dados do usuário obtidos com sucesso",
+              });
+            }
+          }
+        });
       } else {
         res.status(200).send({
           status: true,
@@ -77,6 +93,7 @@ router.post("/cadas/leituracliente", (req, res) => {
     }
   });
 });
+
 
 router.post("/cadas/leituraclienteEndereco", (req, res) => {
   const id = req.body.id;
