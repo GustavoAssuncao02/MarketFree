@@ -53,11 +53,15 @@
             <div class="col-md-6">
               <ul class="list-group">
                 <span class="fw-bold" style="font-size: 18px;">Ocupação:</span>
-                <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('ocupacao', $event)">{{
+                <li class="list-group-item" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoCliente('ocupacao', $event)">{{
                   cliente?.ocupacao }}</li>
+                  <li class="list-group-item" *ngIf="!editavel">{{ cliente?.ocupacao }}</li>
                 <span class="fw-bold mt-4" style="font-size: 18px;">Pessoa Politicamente Exposta:</span>
-                <li class="list-group-item" contenteditable="true"
-                  (blur)="salvarEdicaoCliente('politicamenteExposta', $event)">{{ cliente?.politicamenteExposta }}</li>
+                <select class="form-select" formControlName="politicamenteExposta" required (change)="atualizarPoliticamenteExposto('politicamenteExposta', $event)">
+                  <option value="" disabled>Selecione uma opção</option>
+                  <option value="Sim" [selected]="cliente?.politicamenteExposta === 'Sim'">Sim</option>
+                  <option value="Não" [selected]="cliente?.politicamenteExposta === 'Não'">Não</option>
+                </select>
               </ul>
               <button type="button" class="btn btn-danger mt-4" (click)="exibirConfirmacao()">Excluir Conta</button>
             </div>

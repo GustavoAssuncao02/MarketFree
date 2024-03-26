@@ -34,6 +34,10 @@ export class InfoUserComponent {
     const novoEstado = event.target.value;
     this.endereco[campo] = novoEstado
   }
+  atualizarPoliticamenteExposto(campo: string, event: any){
+    const novoStatus = event?.target.value;
+    this.cliente[campo] = novoStatus
+  }
   salvarEdicaoCliente(campo: string, event: any) {
     const novoValorCliente = event.target.innerText; 
     this.cliente[campo] = novoValorCliente; 
