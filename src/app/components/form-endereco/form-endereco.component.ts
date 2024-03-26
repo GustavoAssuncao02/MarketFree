@@ -58,7 +58,6 @@ export class FormEnderecoComponent {
       cidade: ['', Validators.required],
       numero: ['', Validators.required],
       complemento: ['', Validators.required],
-      //genero: '',
       estado: ['', Validators.required],
     });
   }
@@ -90,8 +89,8 @@ export class FormEnderecoComponent {
     console.log('Dados enviados para o servidor:', this.formEndereco.value);
 
     if (this.formEndereco.valid) {
-      const bodyDataEndereco = this.formEndereco.value; // Dados do formulário de endereço
-      const bodyDataCliente = this.dadosService.getDadosFormulario(); // Dados do formulário de cliente
+      const bodyDataEndereco = this.formEndereco.value;
+      const bodyDataCliente = this.dadosService.getDadosFormulario();
       console.log("dados do cliente:")
       console.log(bodyDataCliente)
       this.clientService.addUsuario(bodyDataEndereco, bodyDataCliente).subscribe({

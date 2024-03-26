@@ -1,6 +1,6 @@
 .titulo {
     text-align: center;
-    margin-bottom: 20px; /* Adicione margem inferior para separar o título dos campos */
+    margin-bottom: 20px;
 }
 
 .container {
@@ -11,11 +11,11 @@
 .formulario {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Distribui os campos em duas colunas */
+    justify-content: space-between; 
 }
 
 .campo-form {
-    width: 48%; /* Define a largura dos campos para formar duas colunas */
+    width: 48%;
     margin-bottom: 15px;
 }
 
