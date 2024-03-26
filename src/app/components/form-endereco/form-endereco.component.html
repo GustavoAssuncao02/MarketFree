@@ -35,10 +35,12 @@
             <input type="text" formControlName="complemento" placeholder="Complemento" required/>
         </div>
         <div class="campo-form">
-            <label for="estado"
-            placeholder="estado">Estado:</label>
-            <input type="text" formControlName="estado" placeholder="Estado" required/>
-        </div>
+            <label for="estado">Estado:</label>
+            <select formControlName="estado" required>
+              <option value="" disabled selected>Selecione um estado</option>
+              <option *ngFor="let estado of estadosBrasileiros" [value]="estado">{{ estado }}</option>
+            </select>
+          </div>
         <button type="submit" >Cadastrar</button>
     </form>
 <div class="text-danger text-center mt-3" *ngIf="mensagemErro">Por favor, preencha todos os campos para concluir o cadastro </div>

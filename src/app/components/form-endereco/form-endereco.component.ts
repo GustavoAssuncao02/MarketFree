@@ -17,6 +17,10 @@ export class FormEnderecoComponent {
   formEndereco!: FormGroup;
   dadosFormulario: any;
   mensagemErro: boolean = false;
+  estadosBrasileiros: string[] = [
+    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG',
+    'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+  ];
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private dadosService: DadosCompartilhado, private router: Router) {
     this.dadosFormulario = this.dadosService.getDadosFormulario();
