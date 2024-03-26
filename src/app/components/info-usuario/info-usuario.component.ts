@@ -36,6 +36,14 @@ export class InfoUserComponent {
   
     if (this.endereco) {
       this.endereco.estado = novoEstado;
+      this.clientService.atualizarEndereco(this.endereco).subscribe( 
+        (response) => {
+         console.log('Dados do endereço atualizados com sucesso!');
+       },
+        (error) => {
+         console.error('Erro ao atualizar dados do endereço:', error);
+       }
+     );
     } else {
       console.error('Endereço não definido');
     }
