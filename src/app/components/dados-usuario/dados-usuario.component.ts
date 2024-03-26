@@ -21,7 +21,7 @@ enviandoAoBanco() {
      console.error('Erro ao atualizar dados:', error);
    }
 );
-this.dados.atualizardadoslogin(this.cliente.email)
+this.dados.AtualizarEmail(this.cliente.email)
 
 this.editavel = !this.editavel;
 }

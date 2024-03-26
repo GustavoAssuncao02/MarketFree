@@ -11,8 +11,11 @@ import { DadosCompartilhado } from '../form-endereco/dados';
 })
 export class DadosSegurancaComponent {
 
+
+
   cliente: any;
   endereco: any;
+  editavel:boolean = false;
 
   constructor(
     private clientService: ClientService,
@@ -21,22 +24,34 @@ export class DadosSegurancaComponent {
     private dados: DadosCompartilhado
   ) {}
 
-
-  salvarEdicaoCliente(campo: string, event: any) {
-    const novoValorCliente = event.target.innerText; // Obtém o novo valor do campo editável
-    this.cliente[campo] = novoValorCliente; // Atualiza o valor do cliente
-    this.clientService.atualizarClienteSeguranca(this.cliente).subscribe( 
-       (response) => {
-        console.log('Dados atualizados com sucesso!');
-      },
-       (error) => {
-        console.error('Erro ao atualizar dados:', error);
-      }
-   );
+  alterarEditavel() {
+    this.editavel = !this.editavel
   }
 
-  ngOnInit(): void {
-    console.log(this.dados.getDadosLogin());
+    enviarAoServidor(){
+      this.clientService.atualizarClienteSeguranca(this.cliente).subscribe( 
+         (response) => {
+          console.log('Dados atualizados com sucesso!');
+          
+        },
+         (error) => {
+          console.error('Erro ao atualizar dados:', error);
+        }
+     );
+     this.editavel = !this.editavel
+     this.dados.AtualizarEmail(this.cliente.email)
+     this.dados.atualizarSenha(this.cliente.senha)
+    }
+
+  salvarEdicaoUsuario(campo: string, event: any) {
+    const novoValorCliente = event.target.innerText; 
+    this.cliente[campo] = novoValorCliente;     
+  }
+  cancelarAlteracoes(){
+    this.cliente = this.definirDadosUsuario()
+    this.editavel = !this.editavel;
+  }
+  definirDadosUsuario(){
     const emailOuCPF = this.dados.getDadosLogin().emailOuCPF;
     this.clientService.getUsuariosEspecifico(emailOuCPF).subscribe(
       (response) => {
@@ -56,6 +71,10 @@ export class DadosSegurancaComponent {
         console.error(error);
       }
     );
+  }
+
+  ngOnInit(): void {
+    this.definirDadosUsuario()
   }
 }
 

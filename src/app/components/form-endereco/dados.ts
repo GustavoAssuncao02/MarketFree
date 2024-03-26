@@ -21,10 +21,17 @@ export class DadosCompartilhado {
     const dados = localStorage.getItem(this.dadosLoginKey);
     return dados ? JSON.parse(dados) : null;
   } 
-  atualizardadoslogin(novoEmail: string) {
+  AtualizarEmail(novoEmail: string) {
     const dadosLogin = this.getDadosLogin();
     if (dadosLogin) {
       dadosLogin.emailOuCPF = novoEmail;
+      localStorage.setItem(this.dadosLoginKey, JSON.stringify(dadosLogin));
+    }
+  }
+  atualizarSenha(novaSenha: string) {
+    const dadosLogin = this.getDadosLogin();
+    if (dadosLogin) {
+      dadosLogin.senha = novaSenha;
       localStorage.setItem(this.dadosLoginKey, JSON.stringify(dadosLogin));
     }
   }

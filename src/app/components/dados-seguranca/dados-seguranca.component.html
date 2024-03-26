@@ -39,21 +39,30 @@
               <div class="row">
                   <div class="col-md-6">
                       <span class="fw-bold" style="font-size: 18px;">Email:</span>
-                      <li class="list-group-item d-block" contenteditable="true" (blur)="salvarEdicaoCliente('email', $event)">{{ cliente?.email }}</li>
+                      <li class="list-group-item d-block" contenteditable="true" *ngIf="editavel" (blur)="salvarEdicaoUsuario('email', $event)">{{ cliente?.email }}</li>
+                      <li class="list-group-item d-block" *ngIf="!editavel">{{ cliente?.email }}</li>
                   </div>
                   <div class="col-md-6">
                       <span class="fw-bold mt-4" style="font-size: 18px;">Nome de Usuario:</span>
-                      <li class="list-group-item d-block" contenteditable="true" (blur)="salvarEdicaoCliente('nomeDeUsuario', $event)">{{ cliente?.nomeDeUsuario }}</li>
+                      <li class="list-group-item d-block" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoUsuario('nomeDeUsuario', $event)">{{ cliente?.nomeDeUsuario }}</li>
+                      <li class="list-group-item d-block" *ngIf="!editavel">{{ cliente?.nomeDeUsuario }}</li>
                   </div>
               </div>
               <div class="row">
                   <div class="col-md-6">
                       <span class="fw-bold mt-4" style="font-size: 18px;">Telefone:</span>
-                      <li class="list-group-item d-block" contenteditable="true" (blur)="salvarEdicaoCliente('numeroTelefone', $event)">{{ cliente?.numeroTelefone }}</li>
+                      <li class="list-group-item d-block" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoUsuario('numeroTelefone', $event)">{{ cliente?.numeroTelefone }}</li>
+                      <li class="list-group-item d-block" *ngIf="!editavel">{{ cliente?.numeroTelefone }}</li>
                   </div>
                   <div class="col-md-6">
                       <span class="fw-bold mt-4" style="font-size: 18px;">Senha:</span>
-                      <li class="list-group-item d-block" contenteditable="true" (blur)="salvarEdicaoCliente('senha', $event)">{{ cliente?.senha }}</li>
+                      <li class="list-group-item d-block" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoUsuario('senha', $event)">{{ cliente?.senha }}</li>
+                      <li class="list-group-item d-block" *ngIf="!editavel">{{ cliente?.senha }}</li>
+                  </div>
+                  <div class="btn-group mt-5" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary mx-2" (click)="alterarEditavel()">Alterar dados</button>
+                    <button type="button" class="btn btn-secondary mx-2" *ngIf="editavel" (click)="cancelarAlteracoes()">Cancelar Alterações</button>
+                    <button type="button" class="btn btn-success mx-2" *ngIf="editavel"(click)="enviarAoServidor()">Salvar Alterações</button>
                   </div>
               </div>
           </ul>
