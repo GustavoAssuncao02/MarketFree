@@ -11,7 +11,7 @@
   <div class="col-md-8">
     <div
       class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light "
-      style="margin-top: 50px; width: 1000px; height: 450px"
+      style="margin-top: 50px; width: 1000px; height: 650px"
     >
       <div
         class="col d-flex flex-column position-static"
@@ -38,14 +38,23 @@
           <ul class="list-group">
             <span class="fw-bold" style="font-size: 18px;">Email:</span>
     <!-- Adicione contenteditable para tornar o campo editável -->
-    <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('email', $event)">{{ cliente?.email }}</li>
+    <li class="list-group-item" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoUsuario('email', $event)">{{ cliente?.email }}</li>
+    <li class="list-group-item" *ngIf="!editavel">{{ cliente?.email }}</li>
     <span class="fw-bold mt-4" style="font-size: 18px;">Telefone:</span>
-    <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('numeroTelefone', $event)">{{ cliente?.numeroTelefone }}</li>
+    <li class="list-group-item" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoUsuario('numeroTelefone', $event)">{{ cliente?.numeroTelefone }}</li>
+    <li class="list-group-item" *ngIf="!editavel">{{ cliente?.numeroTelefone }}</li>
     <span class="fw-bold mt-4" style="font-size: 18px;">Nome de Usuario:</span>
-    <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('nomeDeUsuario', $event)">{{ cliente?.nomeDeUsuario }}</li>
+    <li class="list-group-item" *ngIf="editavel" contenteditable="true" (blur)="salvarEdicaoUsuario('nomeDeUsuario', $event)">{{ cliente?.nomeDeUsuario }}</li>
+    <li class="list-group-item" *ngIf="!editavel">{{ cliente?.nomeDeUsuario }}</li>
           </ul>
         </div>
+        <div class="btn-group mt-5" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary mx-2" (click)="alterarEditavel()">Alterar dados</button>
+          <button type="button" class="btn btn-secondary mx-2" *ngIf="editavel" (click)="cancelarAlteracoes()">Cancelar Alterações</button>
+          <button type="button" class="btn btn-success mx-2" *ngIf="editavel"(click)="enviandoAoBanco()">Salvar Alterações</button>
+        </div>
       </div>
+      
     </div>
 
 

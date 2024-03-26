@@ -11,6 +11,28 @@ import { DadosCompartilhado } from '../form-endereco/dados';
 export class DadosUsuarioComponent {
   cliente: any;
   endereco: any;
+  editavel: boolean = false;
+enviandoAoBanco() {
+  this.clientService.atualizarClienteDados(this.cliente).subscribe( 
+    (response) => {
+     console.log('Dados atualizados com sucesso!');
+   },
+    (error) => {
+     console.error('Erro ao atualizar dados:', error);
+   }
+);
+this.dados.atualizardadoslogin(this.cliente.email)
+
+this.editavel = !this.editavel;
+}
+cancelarAlteracoes() {
+  this.cliente = this.definirDadosUsuario()
+  this.editavel = !this.editavel;
+}
+alterarEditavel() {
+ this.editavel = !this.editavel;
+}
+  
 
   constructor(
     private clientService: ClientService,
@@ -19,22 +41,18 @@ export class DadosUsuarioComponent {
     private dados: DadosCompartilhado
   ) {}
 
-
-  salvarEdicaoCliente(campo: string, event: any) {
-    const novoValorCliente = event.target.innerText; // Obtém o novo valor do campo editável
-    this.cliente[campo] = novoValorCliente; // Atualiza o valor do cliente
-    this.clientService.atualizarClienteDados(this.cliente).subscribe( 
-       (response) => {
-        console.log('Dados atualizados com sucesso!');
-      },
-       (error) => {
-        console.error('Erro ao atualizar dados:', error);
-      }
-   );
+  salvarEdicaoUsuario(campo: string, event: any){
+    const novoValorCliente = event.target.innerText; 
+    this.cliente[campo] = novoValorCliente; 
   }
 
-  ngOnInit(): void {
-    console.log(this.dados.getDadosLogin());
+
+  salvarEdicaoCliente(campo: string, event: any) {
+    const novoValorCliente = event.target.innerText;
+    this.cliente[campo] = novoValorCliente;
+    
+  }
+  definirDadosUsuario(){
     const emailOuCPF = this.dados.getDadosLogin().emailOuCPF;
     this.clientService.getUsuariosEspecifico(emailOuCPF).subscribe(
       (response) => {
@@ -54,5 +72,9 @@ export class DadosUsuarioComponent {
         console.error(error);
       }
     );
+  }
+  ngOnInit(): void {
+    console.log(this.dados.getDadosLogin());
+    this.definirDadosUsuario()
   }
 }
