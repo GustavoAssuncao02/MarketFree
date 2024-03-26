@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClientService } from '../../../services/apiservice.service';
-import { AuthService } from '../../../../servidor/api/auth.service';
 import { DadosCompartilhado } from '../form-endereco/dados';
 
 @Component({
@@ -21,7 +20,6 @@ export class InfoUserComponent {
   constructor(
     private clientService: ClientService,
     private route: ActivatedRoute,
-    private authService: AuthService,
     private dados: DadosCompartilhado
   ) {} 
   

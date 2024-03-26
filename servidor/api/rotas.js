@@ -5,7 +5,6 @@ const jtw = require("jsonwebtoken");
 require("dotenv-safe").config();
 const {gerarToken} = require('./jwt.js');
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/add", (req, res) => {
   let detalhes = {
     nome: req.body.nome,
@@ -39,10 +38,6 @@ router.post("/cadas/add", (req, res) => {
   });
 });
 
-
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
 router.get("/cadas/leitura", (req, res) => {
   const sql = "SELECT * FROM `usuario`";
   connection.query(sql, (error, result) => {
@@ -61,7 +56,7 @@ router.get("/cadas/leitura", (req, res) => {
     }
   });
 });
-//------------------------------------------------------------------------------------------------------------------------------------------//
+
 router.post("/cadas/leituracliente", (req, res) => {
   const email = req.body.email;
   const sql = "SELECT * FROM usuario WHERE email = ?";
@@ -83,10 +78,8 @@ router.post("/cadas/leituracliente", (req, res) => {
   });
 });
 
-//-----------------------------------------------------------------------------------------------------------------------------------//
-
 router.post("/cadas/leituraclienteEndereco", (req, res) => {
-  const id = req.body.id; // este é o id do endereço
+  const id = req.body.id;
   const sql = "SELECT * FROM endereco WHERE id = ?";
   
   connection.query(sql, [id], (error, result) => {
@@ -98,16 +91,16 @@ router.post("/cadas/leituraclienteEndereco", (req, res) => {
       } else {
         res.status(200).send({
           status: true,
-          data: result[0], // Aqui, result[0] contém os dados do endereço
+          data: result[0],
           message: "Dados do endereço obtidos com sucesso",
         });
       }
     }
   });
 });
-//-----------------------------------------------------------------------------------------------------------//
+
 router.post("/cadas/alterarUsuario", (req, res) => {
-  const cliente = req.body; // Agora req.body contém todo o objeto cliente
+  const cliente = req.body; 
   const sqlUsuario = `UPDATE usuario 
                       SET nome = ?, cpf = ?, ocupacao = ?, politicamenteExposta = ? 
                       WHERE id = ?`;
@@ -124,9 +117,6 @@ router.post("/cadas/alterarUsuario", (req, res) => {
     }
   });
 });
-
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 router.post("/cadas/alterarUsuarioDados", (req, res) => {
   const cliente = req.body;
@@ -148,9 +138,6 @@ router.post("/cadas/alterarUsuarioDados", (req, res) => {
   });
 });
 
-
-//----------------------------------------------------------------------------------------------------------------------------------//
-
 router.post("/cadas/alterarUsuarioSeguranca", (req, res) => {
   const cliente = req.body;
   const sqlUsuario = `UPDATE usuario 
@@ -171,9 +158,8 @@ router.post("/cadas/alterarUsuarioSeguranca", (req, res) => {
   });
 });
 
-//---------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/alterarEndereco", (req, res) => {
-  const endereco = req.body; // Agora estamos recebendo o objeto completo do endereço
+  const endereco = req.body;
 
   const sqlEndereco = `UPDATE endereco 
   SET endereco = ?, cep = ?, cidade = ?, numero = ?, estado = ? 
@@ -192,12 +178,6 @@ router.post("/cadas/alterarEndereco", (req, res) => {
   });
 });
 
-
-
-
-
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/endereco", (req, res) => {
   let endereco = {
     cep: req.body.cep,
@@ -222,10 +202,6 @@ router.post("/cadas/endereco", (req, res) => {
   });
 });
 
-
-
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/dado", (req, res) => {
 
   let enderecoDetalhes = {
@@ -281,12 +257,9 @@ router.post("/cadas/dado", (req, res) => {
   
 });
 
-//------------------------------------------------------------------------------------------------------------------------------------------//
-
 router.post("/login", (req, res) => {
   const { emailOuCPF, senha } = req.body;
   
-  // Verificar se o emailOuCPF é um email ou CPF
   let sqlEmail = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
   let sqlCPF = "SELECT * FROM usuario WHERE cpf = ? AND senha = ?";
   
@@ -318,12 +291,9 @@ router.post("/login", (req, res) => {
   });
 });
 
-
-//------------------------------------------------------------------------------------------------------------------------------------------//
 router.post("/cadas/apagarConta", (req, res) => {
   const { idUsuario } = req.body;
 
-  // Consulta SQL para obter o ID do endereço associado ao usuário
   let sqlSelectEnderecoId = "SELECT idEndereco FROM usuario WHERE id = ?";
   connection.query(sqlSelectEnderecoId, [idUsuario], (errorSelect, resultsSelect) => {
     if (errorSelect) {
@@ -335,7 +305,6 @@ router.post("/cadas/apagarConta", (req, res) => {
     }
     const idEndereco = resultsSelect[0].idEndereco;
 
-    // Consulta SQL para atualizar os registros na tabela usuario que estão vinculados a esse endereço
     let sqlUpdateUsuario = "UPDATE usuario SET idEndereco = NULL WHERE idEndereco = ?";
     connection.query(sqlUpdateUsuario, [idEndereco], (errorUpdate, resultsUpdate) => {
       if (errorUpdate) {
@@ -343,7 +312,6 @@ router.post("/cadas/apagarConta", (req, res) => {
         return res.status(500).json({ success: false, message: "Erro ao apagar conta" });
       }
 
-      // Consulta SQL para excluir o endereço associado ao usuário
       let sqlDeleteEndereco = "DELETE FROM endereco WHERE id = ?";
       connection.query(sqlDeleteEndereco, [idEndereco], (errorDelete, resultsDelete) => {
         if (errorDelete) {
@@ -351,7 +319,6 @@ router.post("/cadas/apagarConta", (req, res) => {
           return res.status(500).json({ success: false, message: "Erro ao apagar conta" });
         }
         
-        // Consulta SQL para excluir o usuário
         let sqlDeleteUsuario = "DELETE FROM usuario WHERE id = ?";
         connection.query(sqlDeleteUsuario, [idUsuario], (errorDeleteUsuario, resultsDeleteUsuario) => {
           if (errorDeleteUsuario) {
@@ -362,15 +329,12 @@ router.post("/cadas/apagarConta", (req, res) => {
             return res.status(404).json({ success: false, message: "Usuário não encontrado" });
           }
           
-          // Se chegarmos até aqui, o usuário e o endereço foram excluídos com sucesso
           return res.status(200).json({ success: true, message: "Conta excluída com sucesso" });
         });
       });
     });
   });
 });
-
-
 
 
 module.exports = router;
