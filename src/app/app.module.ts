@@ -58,7 +58,7 @@ import { ExclusaoComponent } from './components/exclusao/exclusao.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   
   providers: [], 

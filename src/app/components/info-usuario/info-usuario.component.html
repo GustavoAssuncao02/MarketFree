@@ -19,9 +19,9 @@
             <div class="col-md-6">
               <ul class="list-group">
                 <span class="fw-bold" style="font-size: 18px;">Nome:</span>
-                <!-- Adicione contenteditable para tornar o campo editável -->
-                <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('nome', $event)">{{
+                <li class="list-group-item" *ngIf="editavel" contenteditable="true">{{
                   cliente?.nome }}</li>
+                <li class="list-group-item" *ngIf="!editavel">{{ cliente?.nome }}</li>
                 <span class="fw-bold mt-4" style="font-size: 18px;">CPF:</span>
                 <li class="list-group-item" contenteditable="true" (blur)="salvarEdicaoCliente('cpf', $event)">{{
                   cliente?.cpf }}</li>
@@ -40,7 +40,8 @@
                 <span class="fw-bold" style="font-size: 12px;">Estado:</span>
                 <select class="form-select" formControlName="estado" required (change)="atualizarEstado($event)">
                   <option value="" disabled>Selecione um estado</option>
-                  <option *ngFor="let estado of estadosBrasileiros" [value]="estado" [selected]="estado === endereco?.estado">{{ estado }}</option>
+                  <option *ngFor="let estado of estadosBrasileiros" [value]="estado"
+                    [selected]="estado === endereco?.estado">{{ estado }}</option>
                 </select>
               </ul>
             </div>
@@ -58,6 +59,8 @@
           </div>
         </div>
       </div>
+      <button (click)="alterarEditavel()">Alterar Editável</button>
+      <button (click)="salvarEdicaoCliente1()">Salvar Alterações</button>
       <br />
       <br />
       <br />

@@ -16,6 +16,7 @@ export class InfoUserComponent {
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG',
     'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
   ];
+  editavel: boolean = false;
 
   constructor(
     private clientService: ClientService,
@@ -23,7 +24,12 @@ export class InfoUserComponent {
     private authService: AuthService,
     private dados: DadosCompartilhado
   ) {} 
+  
+  
 
+  alterarEditavel() {
+    this.editavel = !this.editavel;
+  }
   atualizarEstado(event: any) {
     const novoEstado = event.target.value;
     console.log("Novo estado selecionado:", novoEstado);
@@ -46,6 +52,7 @@ export class InfoUserComponent {
       }
    );
   }
+  
 
   salvarEdicaoEndereco(campo: string, event: any) {
     const novoValor = event.target.innerText; // Obtém o novo valor do campo editável
