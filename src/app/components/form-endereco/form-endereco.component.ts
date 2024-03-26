@@ -86,9 +86,8 @@ export class FormEnderecoComponent {
   } 
 
   registerEndereco() {
-    console.log('Dados enviados para o servidor:', this.formEndereco.value);
-
     if (this.formEndereco.valid) {
+      console.log('Dados enviados para o servidor:', this.formEndereco.value);
       const bodyDataEndereco = this.formEndereco.value;
       const bodyDataCliente = this.dadosService.getDadosFormulario();
       console.log("dados do cliente:")
