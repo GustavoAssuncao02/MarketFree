@@ -25,6 +25,7 @@ import { PerfilPageComponent } from './Paginas/perfil-page/perfil-page.component
 import { InformacoesComponent } from './Paginas/informacoes-usuario/informacoes.component';
 import { DadosComponent } from './Paginas/dados-usuario-page/dados.component';
 import { DadosSegurancaPageComponent } from './Paginas/dados-seguranca-page/dados-seguranca-page.component';
+import { CadastradoSucessoComponent } from './components/cadastrado-sucesso/cadastrado-sucesso.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { DadosSegurancaPageComponent } from './Paginas/dados-seguranca-page/dado
     InformacoesComponent,
     DadosComponent,
     DadosSegurancaPageComponent,
+    CadastradoSucessoComponent,
   ],
   imports: [
     BrowserModule,
