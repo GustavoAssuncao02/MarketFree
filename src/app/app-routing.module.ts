@@ -11,7 +11,7 @@ import { InformacoesComponent } from './Paginas/informacoes-usuario/informacoes.
 import { DadosSegurancaPageComponent } from './Paginas/dados-seguranca-page/dados-seguranca-page.component';
 import { CadastroSucessoComponent } from './Paginas/cadastro-sucesso/cadastro-sucesso.component';
 import { ContaExcluidaComponent } from './Paginas/conta-excluida/conta-excluida.component';
-const routes: Routes = [
+const routes: Routes = [ 
   { path: '', component:HomeComponent},
   { path: 'cadastre', component:CadastreComponent },
   { path: 'CadastroEndereco', component:CadastroEnderecoComponent },

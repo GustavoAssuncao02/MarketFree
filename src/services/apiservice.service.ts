@@ -14,7 +14,7 @@ export class ClientService {
     return this.http.post<any>('http://localhost:8081/cadas/add', client, {
       headers,
     });
-  }
+  } 
   
   addEndereco(endereco: any): Observable<any> {
     const headers = { 'Content-Type': 'application/json' };
